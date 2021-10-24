@@ -10,4 +10,4 @@ fsurf(func,[0 10 0 8],'EdgeColor','none');
 shading interp;
 view(90+45,45);
 set(gcf,'position',[100,100,1000,500]);
-saveas(f,"..\figure\fig_3.png");
+saveas(f,"..\figure\fig_2.png");
