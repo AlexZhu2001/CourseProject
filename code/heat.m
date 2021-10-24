@@ -1,0 +1,13 @@
+clc;clear;close all;
+f=figure;
+subplot(1,2,1);
+fsurf(@(x,y)(1+cos(y))*exp(0.3*x)/250,[0 10 0 10],'EdgeColor','none');
+shading interp;
+view(90+45,45);
+subplot(1,2,2);
+func=@(x,y)((cos(y)-0.5*cos(2*y)-0.25*cos(3*y)+1.75)*exp(0.3*x))/50000;
+fsurf(func,[0 10 0 8],'EdgeColor','none');
+shading interp;
+view(90+45,45);
+set(gcf,'position',[100,100,1000,500]);
+saveas(f,"..\figure\fig_3.png");

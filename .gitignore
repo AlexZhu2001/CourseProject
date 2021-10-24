@@ -14,3 +14,8 @@ draft*.pdf
 *.fdb_latexmk
 *.out
 *.code-workspace
+
+*.avi
+*.mp4
+*.wav
+
