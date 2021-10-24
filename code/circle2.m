@@ -1,6 +1,6 @@
 clc;clear;close all;
 N=1000;
-t=linspace(0,2,N);
+t=linspace(0,4,N);
 omg1=2*pi*3;
 omg2=2*pi*5;
 subplot(2,2,[1,2]);
