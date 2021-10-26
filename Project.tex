@@ -77,14 +77,9 @@ If we imagine this graph is having some kind of mass to it, like metal wire. We 
 		\centerline{\textbf{Figure 4}}
 	\end{minipage}
 \end{figure}
-And we can do the same operation in a combination of two signal: $cos(2\pi \dot 3t)+cos(2\pi \dot 5t)$. Then we can get similar result: two peaks at 3 and 5 Hz. Until now, we only consider one dimension.In math, when we talk about 2-D point, we always use complex number to indicate them. We can use $x+iy$ to suggest every points in this figure. And multiply it by a rotating factor $e^{i 2 \pi nt}$, we can get a result:
-$$
-\mathcal{F}(x,y)=f(t)\dot e^{i 2 \pi ft}
-$$
-And we can randomly choose N points, and calculate its weight center
-$$
-\mathcal{W}(f)=\sum\limits_{i=0}^{N}\mathcal{F}(x_i,y_i)=\sum\limits_{i=0}^{N}f(t_i)\dot e^{i 2 \pi ft}
-$$
+And we can do the same operation in a combination of two signal: $cos(2\pi 3t)+cos(2\pi 5t)$. Then we can get similar result: two peaks at 3 and 5 Hz. And now, we can make a bold assumptions that we can use the combination of sine or cosine signal to build another arbitrary signal. And we should proof it.\par
+Let us assume $f(t)=\sum\limits^{N}A_n \cos (n\omega t+\phi)$, 
+
 \begin{figure}[H]
 	\centerline{\animategraphics[autoplay,loop,scale=0.5]{2}{figure/fig_5/fig-}{1}{10}}
 \end{figure}
