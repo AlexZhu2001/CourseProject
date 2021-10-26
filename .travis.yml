@@ -1,12 +1,13 @@
-language: generic
+language: minimal
 sudo: required
 sudo: true
 language: generic
 branches:
   only:
     - master # build master branch only
-install: 
-  - sudo apt-get install texlive-full
+before_script: 
+  - sudo apt-get -qq update
+  - sudo apt-get -y install texlive-full
 script: 
   - pdflatex -synctex=1 -interaction=nonstopmode Project.tex
 deploy:
