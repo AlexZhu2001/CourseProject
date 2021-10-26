@@ -11,3 +11,5 @@ deploy:
  api_key: $GH_TOKEN
  file: "Project.tex"
  skip_cleanup: true
+ on:
+  tags: true
