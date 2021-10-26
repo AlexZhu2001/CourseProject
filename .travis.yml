@@ -1,8 +1,10 @@
 language: generic
 sudo: required
+sudo: true
+language: generic
 branches:
   only:
-    - master
+    - master # build master branch only
 install: 
   - sudo apt-get install texlive-full
 script: 
