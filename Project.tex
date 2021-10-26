@@ -1,3 +1,4 @@
+\let\nofiles\relax
 \documentclass[margin,line]{res}
 \usepackage{multirow}
 \usepackage{graphicx}
@@ -65,31 +66,31 @@ In fact, many physical problems have the same properties, such as heat transfer 
 The change of its temperature with time t presents a simple exponential decay form, as I showed in the first sub-graph of Figure 2.\par
 But for a more complex temperature function $T=f(x)$ like the second sub-graph of Figure 2, if we can decompose it into the composition of a series sine and cosine function, we can simply migrate it to $T=F(x,t)$.\par
 Let's start with simple one:a sinusoidal signal of 4 beats per second. We can construct a rotating vector whose length is the same as this sinusoidal signal value of the current time. The graph of this vector will like the second sub-graph in Figure 3. We can find a magic phenomenon.When the frequency of this rotating vector is equal to this sinusoidal signal's frequency, a large number of points in this image are biased to the same side.\par
-\begin{figure}[H]
-	\centerline{\animategraphics[autoplay,loop,width=0.5\textwidth]{30}{figure/fig_3/fig-}{1}{601}}
-	\centerline{\textbf{Figure 3}}
-\end{figure}
 If we imagine this graph is having some kind of mass to it, like metal wire. We can find, as we change the frequency, the center of mass wobbles around a bit at origin. But when the frequency is equal to our signal frequency, the mass center is unusually far to the right. If we draw the x position of the mass center changed by the frequency into a $f-x$ graph. It will be like the third sub-figure in Figure 3. There is a high peak at 4 Hz position.\par
 \begin{figure}[H]
-	\centerline{\animategraphics[autoplay,loop,width=0.5\textwidth]{30}{figure/fig_4/fig-}{1}{601}}
-	\centerline{\textbf{Figure 4}}
+	\begin{minipage}{0.48\linewidth}
+		\centerline{\animategraphics[autoplay,loop,width=0.8\textwidth]{30}{figure/fig_3/fig-}{1}{601}}
+		\centerline{\textbf{Figure 3}}
+	\end{minipage}
+	\begin{minipage}{0.48\linewidth}
+		\centerline{\animategraphics[autoplay,loop,width=0.8\textwidth]{30}{figure/fig_4/fig-}{1}{601}}
+		\centerline{\textbf{Figure 4}}
+	\end{minipage}
 \end{figure}
+And we can do the same operation in a combination of two signal: $cos(2\pi \dot 3t)+cos(2\pi \dot 5t)$. Then we can get similar result: two peaks at 3 and 5 Hz. 
 \begin{figure}[H]
 	\centerline{\animategraphics[autoplay,loop,scale=0.5]{2}{figure/fig_5/fig-}{1}{10}}
 \end{figure}
-\newpage
+\clearpage
 
 \section{\sc II. When the infinite sum has to be applied}
-\newpage
+\clearpage
 
 \section{\sc III. Open the gate to frequency domain}
-\newpage
+\clearpage
 
 \section{\sc IV. From periodicity to aperiodicity}
-\newpage
-
-
-
+\clearpage
 
 \end{resume}
 \end{document}
