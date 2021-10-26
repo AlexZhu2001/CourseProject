@@ -1,16 +1,15 @@
 language: minimal
 sudo: true
-language: generic
 branches:
-  only:
-    - master # build master branch only
+only:
+ - master # build master branch only
 before_script: 
-  - sudo apt-get -qq update
-  - sudo apt-get -y install texlive-full
+ - sudo apt-get -qq update
+ - sudo apt-get -y install texlive-full
 script: 
-  - pdflatex -synctex=1 -interaction=nonstopmode Project.tex
+ - pdflatex -synctex=1 -interaction=nonstopmode Project.tex
 deploy:
-	provider: releases
-	api_key: $GH_TOKEN
-	file: "Project.tex"
-	skip_cleanup: true
+ provider: releases
+ api_key: $GH_TOKEN
+ file: "Project.tex"
+ skip_cleanup: true
