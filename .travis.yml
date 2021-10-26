@@ -1,9 +1,14 @@
 language: generic
 sudo: required
-install: sudo apt-get install texlive-full
-script: pdflatex -synctex=1 -interaction=nonstopmode Project.tex
+branches:
+  only:
+    - master
+install: 
+  - sudo apt-get install texlive-full
+script: 
+  - pdflatex -synctex=1 -interaction=nonstopmode Project.tex
 deploy:
 	provider: releases
-	api_key: $GITHUB_TOKEN
+	api_key: $GH_TOKEN
 	file: "Project.tex"
 	skip_cleanup: true
