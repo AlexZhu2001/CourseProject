@@ -80,30 +80,37 @@ If we imagine this graph is having some kind of mass to it, like metal wire. We 
 And we can do the same operation in a combination of two signal: $cos(2\pi 3t)+cos(2\pi 5t)$. Then we can get similar result: two peaks at 3 and 5 Hz. And now, we can make a bold assumptions that we can use the combination of sine or cosine signal to build another arbitrary signal. And we should proof it.\par
 Let us assume $f(t)=\sum\limits^{N}A_n \sin (n\omega t+\phi)$, then we will prove it.
 Since we want to using the combination of sine function, we let $f_T(t)$ equals to the sum of n-terms sine signal.
+%%Orignal sine formula
 $$
 f_T(t)=C_0+\sum\limits_{n=1}^N{\sin(n\Omega t+\phi_{n} ) } \quad \Omega=\frac{2\pi}{t}
 $$
+
 And we can make some modifications to the formula.
+%%Expansion of last formula
 $$
 f_T(t)=C_0+\sum\limits_{n=1}^N{[
 	A_n\sin(n\Omega t)\cos\phi_n+
 	A_n\cos(n\Omega t)\sin\phi_n
 	]}
 $$
+
 Let's denote $a_n=A_n\cos\phi_n$ and $b_n=A_n\sin\phi_n$
+%%Denote an and bn
 $$
 f_T(t)=C_0+\sum\limits_{n=1}^N{[
 	a_n\sin(n\Omega t)+
 	b_n\cos(n\Omega t)
 	]}
 $$
+
 Apply Euler's formula
+%%Euler's formula
 \begin{align}\nonumber
 \sin(x)=\frac{e^{jx}-e^{-jx}}{2j}\nonumber \\
 \cos(x)=\frac{e^{jx}+e^{-jx}}{2}\nonumber \\
 e^{jx}=\cos(x)+j\sin(x)\nonumber
 \end{align}
-
+%%Applied euler's formula and merge congeners 
 \begin{align}
 f_T(t)&=C_0+\sum\limits_{n=1}^{N}{[
 	a_n( \frac{ e^{jn\Omega t} + e^{-jn\Omega t} }{2j} )+
@@ -114,14 +121,18 @@ f_T(t)&=C_0+\sum\limits_{n=1}^{N}{[
 	( \frac{b_n+ja_n}{2} )e^{-jn\Omega t} 
 	]}\nonumber
 \end{align}
+
 Then we can denote $C_n=\frac{b_n-ja_n}{2}$ and $C_{-n}=\frac{b_n+ja_n}{2}$
+%%Denote Cn
 \begin{align}
 f_T(t)&=C_0+\sum\limits_{n=1}^{N}{(
 	C_n e^{jn\Omega t} + C_{-n} e^{-jn\Omega t}
 	)}\nonumber \\
 &=\sum\limits_{n=-N}^{N}{C_n e^{jn\Omega t}}\nonumber
 \end{align}
+
 Now we have the Fourier series of periodic signal $f_T(t)$, but we don't know how to calculate $C_n$.At this time, we can extract one term from n terms sum.We can denote it as $C_m$.
+%%How to calc Cn
 \begin{flalign}
 &f_T(t)=C_m e^{jm\Omega t} + 
 	\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{C_n e^{jn\Omega t}} \nonumber \\
@@ -130,7 +141,9 @@ Now we have the Fourier series of periodic signal $f_T(t)$, but we don't know ho
 &C_m=f_T(t) e^{-jm\Omega t}-
 	\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{C_n e^{j(n-m)\Omega t}} \nonumber
 \end{flalign}
+
 We can do integration in both sides
+%%Integration of left and right
 \begin{align}
 &\int_{0}^{T}{C_m\dif t}=\int_{0}^{T}{(f_T(t) e^{-jm\Omega t}-
 	\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{C_n e^{j(n-m)\Omega t}})
@@ -139,33 +152,61 @@ We can do integration in both sides
 	\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{C_n e^{j(n-m)\Omega t}}]
 	\dif t} \nonumber
 \end{align}
+
 Since integration and summation is linear operation, we can put integration into summation.
+%%Swap integratuion and summation
 \begin{align}
 	&TC_m=\int_{0}^{T}{f_T(t) e^{-jm\Omega t}} \dif t -
 		\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{
 			\int_{0}^{T}C_n e^{j(n-m)\Omega t} \dif t
 		} \nonumber
 \end{align}
+
 For the inner item of summation, we have
+%%Calculate orthogonal terms 
 \begin{align}
 &\int_{0}^{T}{C_n e^{j(n-m)\Omega t} \dif t } \nonumber \\
 =&\ C_n\int_{0}^{T} e^{j(n-m)\Omega t} \nonumber \\
 =&\ \frac{C_n}{j(n-m)\Omega} \Big[ e^{ j(n-m) \frac{2\pi}{T} t} \Big]_{0}^{T} \nonumber \\
 =&\ 0 \nonumber
 \end{align}
+
 So, we can get
+%%Cn result
 $$
 C_n=\frac{1}{T}\int_0^T{f_T(t) e^{-jn\Omega t} \dif t}
 $$
+
 Now, we can get a series which is contain the combination of sine and cosine function. We can simply use it to verify our suggestion. If we have a square wave with frequency of 1Hz and 50\% duty cycle. Let's calculate its Fourier coefficient. And we should always start with $C_0$.
+%%C0 of square wave
 \begin{align}
-	C_0 &= \ \int_{0}^{1}{\frac{1}{1} f_T(t) e^{-j\Omega t \cdot 0} \dif t} \quad \Omega=\frac{2\pi}{T} \nonumber \\
+C_0 &= \ \int_{0}^{1}{f_T(t) e^{-j\Omega t \cdot 0} \dif t} \quad \Omega=\frac{2\pi}{T} \nonumber \\
 	&=\ \int_{0}^{1}{f_T(t) \dif t} \nonumber \\
 	&=\ \int_{0}^{0.5}{\dif t} + \int_{0.5}^{1}{- \dif t} \nonumber \\
-	&=\ 0 \nonumber
+	&=\ 0 \nonumber \\
+C_n &= \ \int_{0}^{1}{ f_T(t) e^{-jn\Omega t} \dif t} \nonumber \\
+	&= \ \int_{0}^{0.5}{e^{-jn\Omega t} \dif t} +
+		 \int_{0.5}^{1}{-e^{-jn\Omega t} \dif t} \nonumber \\
+	&= \ \Big[-\frac{1}{jn\Omega} e^{-jn\Omega t}\Big|_{0}^{0.5} \Big] -
+	   	 \Big[\frac{1}{jn\Omega} e^{-jn\Omega t}\Big|_{0.5}^{1} \Big] \nonumber
+\end{align}
+Apply $\Omega \ = \ \frac{2\pi}{T} $
+\begin{align}
+C_n	&= \ \Big[-\frac{1}{jn2\pi} e^{-jn2\pi t}\Big|_{0}^{0.5} \Big] -
+		 \Big[\frac{1}{jn2\pi} e^{-jn2\pi t}\Big|_{0.5}^{1} \Big] \nonumber \\
+	&= \ \cfrac{j}{2\pi n}\Big[ e^{-j\pi n} -1 -e^{-j2\pi n} +e^{-j\pi n} \Big] \nonumber \\
+	&= \ \cfrac{j}{2\pi n}\Big[ 2e^{-j\pi n -1 -e^{-j2\pi n}} \Big] \nonumber
+\end{align}
+We can simply calculate that $e^{-j2\pi n}=1$ and $e^{-j\pi n}=(-1)^{n}$. So we can get
+\begin{align}
+C_n &= \ \cfrac{j}{\pi n}\Big[ (-1)^n-1 \Big] \nonumber \\
+	&=\begin{cases}
+		\cfrac{-2j}{\pi n}&  {odd \ n} \\
+		0&  {even \ n}
+ 	  \end{cases}	\nonumber
 \end{align}
 \begin{figure}[H]
-	\centerline{\animategraphics[autoplay,loop,scale=0.5]{2}{figure/fig_5/fig-}{1}{10}}
+	\centerline{\animategraphics[autoplay,loop,scale=0.5]{1}{figure/fig_5/fig-}{0}{5}}
 \end{figure}
 \clearpage
 
