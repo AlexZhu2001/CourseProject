@@ -81,7 +81,7 @@ And we can do the same operation in a combination of two signal: $cos(2\pi 3t)+c
 Let us assume $f(t)=\sum\limits^{N}A_n \sin (n\omega t+\phi)$, then we will prove it.
 Since we want to using the combination of sine function, we let $f_T(t)$ equals to the sum of n-terms sine signal.
 $$
-f_T(t)=C_0+\sum\limits_{n=1}^N{\sin(n\Omega t+\phi_{n} ) } \quad \Omega=\frac{2\pi]}{t}
+f_T(t)=C_0+\sum\limits_{n=1}^N{\sin(n\Omega t+\phi_{n} ) } \quad \Omega=\frac{2\pi}{t}
 $$
 And we can make some modifications to the formula.
 $$
@@ -105,7 +105,7 @@ e^{jx}=\cos(x)+j\sin(x)\nonumber
 \end{align}
 
 \begin{align}
-f_T(t)&=C_0+\sum\lim\limits_{n=1}^{N}{[
+f_T(t)&=C_0+\sum\limits_{n=1}^{N}{[
 	a_n( \frac{ e^{jn\Omega t} + e^{-jn\Omega t} }{2j} )+
 	b_n( \frac{ e^{jn\Omega t} + e^{-jn\Omega t} }{2} )
 	]}\nonumber \\ 
@@ -119,7 +119,7 @@ Then we can denote $C_n=\frac{b_n-ja_n}{2}$ and $C_{-n}=\frac{b_n+ja_n}{2}$
 f_T(t)&=C_0+\sum\limits_{n=1}^{N}{(
 	C_n e^{jn\Omega t} + C_{-n} e^{-jn\Omega t}
 	)}\nonumber \\
-&=\sum\limits_{n=-N}{N}{C_n e^{jn\Omega t}}\nonumber
+&=\sum\limits_{n=-N}^{N}{C_n e^{jn\Omega t}}\nonumber
 \end{align}
 Now we have the Fourier series of periodic signal $f_T(t)$, but we don't know how to calculate $C_n$.At this time, we can extract one term from n terms sum.We can denote it as $C_m$.
 \begin{flalign}
