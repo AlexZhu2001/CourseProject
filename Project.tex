@@ -9,6 +9,7 @@
 \usepackage{stfloats}
 \usepackage{cite}
 \usepackage{color}
+\usepackage{mathrsfs}
 \usepackage{animate}
 
 \oddsidemargin -.5in
@@ -205,12 +206,74 @@ C_n &= \ \cfrac{j}{\pi n}\Big[ (-1)^n-1 \Big] \nonumber \\
 		0&  {even \ n}
  	  \end{cases}	\nonumber
 \end{align}
+And the Fourier series of square wave will be
+$$
+\mathscr{F}_f(t)= \ \cfrac{4}{\pi} \sum\limits_{k=1}^K{\cfrac{1}{2k-1} \sin [2\pi (2k+1)t]}
+$$
 \begin{figure}[H]
 	\centerline{\animategraphics[autoplay,loop,scale=0.5]{1}{figure/fig_5/fig-}{0}{5}}
 \end{figure}
 \clearpage
 
 \section{\sc II. When the infinite sum has to be applied}
+Now, we have an almost-Fourier series. But we can find ,when we use sine wave to build square wave, this sequence converges to the square wave except at the point $x_0 = 0$, which a point of discontinuity of it. In 1898, American Albert Michelson made a harmonic analyzer. When he tested the square wave, he was surprised to find that the $X_n(T)$ of the square wave jumped near the discontinuous points, and the peak size of the fluctuation did not seem to decrease with the increase of n! So he wrote to Gibbs, the famous mathematical physicist at that time. Gibbs got interested to the behavior of the sequence of Fourier partial sums around these points. \par
+Indeed, when x is close to the point 0, the graphs present a bump. Let us do some calculations to justify this phenomenon. Consider the derivative of $\mathscr{F}_f(t)$.
+\begin{align}
+\mathscr{F}^{'}_f(t) 
+	&= \ \cfrac{4}{\pi} \sum\limits_{n=0}^N{\cos [2\pi (2k+1)t]} \nonumber \\
+	&= \ \cfrac{4}{\pi} \left[ \cos(t) + \cos(3t) + cos(5t) + \cdots + cos((2N-1)t) \right] \nonumber 
+\end{align}
+Using trigonometric identities, we get 
+\begin{align}
+\pi\sin(t) \mathscr{F}^{'}_f(t) 
+	&= \ 2\left[ \sin(2t) + (\sin(4t)-\sin(2t)) + (\sin(6t)-\sin(4t)) + \cdots + (\sin(2nt)-\sin((2n-2)t))\right] \nonumber \\
+	&= \ 2\sin(2nt) \nonumber
+\end{align}
+So the critical points of $\mathscr{F}_f(t)$ are 
+$$
+2nt = \pm\pi , \pm 2\pi,\cdots,\pm (2n-1)\pi
+$$
+Since the functions are odd, we will only focus on the behavior to the right of 0. The closest critical point to the right of 0 is $\frac{\pi}{2n}$. Hence 
+$$
+\mathscr{F}_f(\cfrac{\pi}{2n}) = \cfrac{4}{\pi} {
+	\sin(\frac{\pi}{2n}) + \cfrac{\sin(\frac{3\pi}{2n})}{3} + \cdots +
+	\cfrac{\sin(\frac{(2n-1)\pi}{2n})}{2n-1}
+}
+$$
+In order to find the asymptotic behavior of the this sequence, when n is large, we will use the Riemann sums. Indeed, consider the function $Sa(t) = \frac{\sin(t)}{t}$ on the interval $[0,\pi]$, and the partition $\left\{{\frac{k\pi}{n}}, \;\;k \in [1,n]\right\}$ of $[0,\pi]$. So the Riemann sums
+$$
+\frac{\pi}{n}
+\left(
+	\cfrac{\sin(\cfrac{\pi}{2n})}{\cfrac{\pi}{2n}} + \cdots +
+	\cfrac{\sin(\cfrac{(2n-1)\pi}{2n})}{\cfrac{(2n-1)\pi}{2n}}
+\right)
+$$
+converges to $\int_{0}^{\pi} Sa(t) \dif t$. Easy calculations show that these sums are equal to 
+$$
+\cfrac{\pi}{2}{\mathscr{F}_f \left( \cfrac{\pi}{2n} \right) }
+$$
+
+Hence
+
+$$
+\lim_{n \rightarrow \infty} \mathscr{F}_f \left(\frac{\pi}{2n}\right) = \frac{2}{\pi}\int_{0}^{\pi}Sa(t) \dif t.
+$$
+
+Using Taylor polynomials of $\sin(t)$ at 0, we get
+
+$$
+\frac{2}{\pi}\int_{0}^{\pi}\frac{\sin(t)}{t} \dif t = 2 - \frac{\pi^2}{9} + \frac{\pi^4}{300} - \frac{\pi^6}{17640}+\ldots
+$$
+
+i.e. up to two decimals, we have
+
+$$
+\frac{2}{\pi}\int_{0}^{\pi}\frac{\sin(t)}{t} \dif t = 1.18
+$$
+These bumps seen around 0 are behaving like a wave with a height equal to 0.9045. This is not the case only for this function. Indeed, Gibbs showed that if f(t) is piecewise smooth on $[-\pi,\pi]$, and $t_0$ is a point of discontinuity, then the Fourier partial sums will exhibit the same behavior, with the bump's height almost equal to 
+$$
+0.09\left[ f(t_0+) + f(t_0-)\right]
+$$
 \clearpage
 
 \section{\sc III. Open the gate to frequency domain}
