@@ -6,6 +6,7 @@ only:
  - master # build master branch only
 script: 
  - docker run -ti -v miktex:/miktex/.miktex -v `pwd`:/miktex/work  miktex/miktex pdflatex -synctex=1 -interaction=nonstopmode Project.tex
+ - docker run -ti -v miktex:/miktex/.miktex -v `pwd`:/miktex/work  miktex/miktex pdflatex -synctex=1 -interaction=nonstopmode Project.tex
 deploy:
  provider: releases
  api_key: $GH_TOKEN

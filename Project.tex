@@ -230,9 +230,66 @@ $$
 $$
 \item Finite-energy case: If periodic signal $f(t)$ has finite energy in a single period, the Fourier series converge in the MSE sense.
 $$
-\lim_{N \rightarrow \infty} 
+\lim_{N \rightarrow \infty} \cfrac{1}{T} \int_{T}\left| f_T(t) - \sum\limits_{n=-N}^{N}C_n e^{-jn\Omega t} \right| \dif t  = 0\nonumber
 $$
 \item Dirichlet case:
+\begin{enumerate}
+	\item Over a single period, $f(t)$ is absolutely integrable (i.e.,$\int_{T}\left| f(t) \right| < \infty$)
+	\item In any finite interval of time $f(t)$ is of bounded variation. In other words, there must be a finite number of maxima and minima in a single period of $f(t)$
+	\item In any finite interval of time, $f(t)$ has a finite number of discontinuities, each of which is finite.
+\end{enumerate}
+If $f(t)$ is a periodic signal satisfying the Dirichlet conditions, and $t_a$ is the discontinuities of $f(t)$, then:
+\begin{enumerate}
+	\item For $t \neq t_a$
+	$$
+	\lim_{N \rightarrow \infty} \left[ f(t) - \sum\limits_{n=-N}^{N} C_n e^{jn\Omega t} \right] = 0 \quad t \neq t_a
+	$$
+	\item For $t = t_a$
+	$$
+	\lim_{N \rightarrow \infty} \left[ \sum\limits_{n=-N}{N} C_n e^{jn\Omega t_a}\right] =
+	\frac{1}{2}\left[ f(t_a^{-} + f(t_a^{+})) \right]
+	$$
+\end{enumerate}
+\textbf{Proof:} \\
+Result 1(Riemann-Lebesgue's Theory): If $f(x)$ and $f^{'}(x)$ are piecewise continuous on $\left[ a,b \right]$, then
+\begin{align}
+\lim_{\lambda \rightarrow \infty} \int_{a}^{b} f(x)\sin(\lambda x) \dif x = 0 \nonumber \\
+\lim_{\lambda \rightarrow \infty} \int_{a}^{b} f(x)\cos(\lambda x) \dif x = 0 \nonumber
+\end{align}
+Result 2(Fourier partial sums): We have 
+\begin{align}
+	D_N(\alpha) &= \cfrac{\sin(N+\frac{1}{2})\alpha}{2\pi sin(\frac{\alpha}{2})} \nonumber \\
+	f_N(x) &=\frac{1}{\pi}\int_{-\pi}^{\pi}{f(t)D_N(t-x)} \dif t \nonumber
+\end{align}
+The $f_N(x)$ is called the \textbf{Fourier partial sums}. And the Dirichlet Kernel is defined by
+\begin{align}
+	D_N(x) = 
+	\begin{cases}
+		\cfrac{ \sin\left[ (N+\cfrac{1}{2})x \right] }{2\pi \sin(\frac{x}{2})} & x \neq 0,\pm 2\pi \cdots \\
+		\cfrac{2N+1}{2\pi} & x=0,\pm 2\pi, \cdots
+	\end{cases} \nonumber
+\end{align}
+And, we can get 
+$$
+\int_{-\pi}^{0} D_N(x) \dif x = 
+\int_{0}^{\pi} D_N(x) \dif x =
+\cfrac{1}{2}
+$$
+Without loss of generality, we can assume that $f(x)$ is defined and $2\pi$-periodic on the $\mathbb{R}$.So, the function $D_N(x)f(t)$ is $2\pi$-periodic in t.
+Using the Dirichlet Kernel, we obtain
+$$
+f_N(x) = \int_{-\pi}^{pi} f(t) D_N(t-x) \dif t
+$$
+denote $u=t-x$,
+\begin{align}
+f_N(x) 	&= \ \int_{-\pi -x}^{\pi -x} f(u+x) D_N(u) \dif u \nonumber \\
+	 	&= \ \int_{-\pi}^{\pi} f(u+x) D_N(u) \dif u \label{XX}
+\end{align}
+Since $D_N(x)$ is a even function, so
+\begin{align}
+f_N(x) = \ \int_{-\pi}^{\pi} f(x-u) D_N(u) \dif u \label{YY}
+\end{align}
+Then, calculate the arithmetic mean of \eqref{XX} and \eqref{YY}
 \end{itemize}
 
 In 1898, American Albert Michelson made a harmonic analyzer. When he tested the square wave, he was surprised to find that the $X_n(T)$ of the square wave jumped near the discontinuous points, and the peak size of the fluctuation did not seem to decrease with the increase of n! So he wrote to Gibbs, the famous mathematical physicist at that time. Gibbs got interested to the behavior of the sequence of Fourier partial sums around these points. \par
