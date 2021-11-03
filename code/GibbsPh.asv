@@ -1,0 +1,17 @@
+clc;clear;close all;
+h=animatedline('color','r');
+t=linspace(0,1,1000);
+y=zeros(1,1000);
+omg=2*pi;
+tmp=10;
+ylim([0.9,1.`]);
+xlim([-0.1,0.2]);
+for i=1:1:5e2
+    y=y+4/pi*1/(2.*i-1).*sin(omg.*(2.*i-1).*t);
+    if mod(i,tmp) == 0
+        clearpoints(h);
+        addpoints(h,t,y);
+        pause(0.5);
+        tmp=tmp*2;
+    end
+end

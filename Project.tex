@@ -290,10 +290,57 @@ Since $D_N(x)$ is a even function, so
 f_N(x) = \ \int_{-\pi}^{\pi} f(x-u) D_N(u) \dif u \label{YY}
 \end{align}
 Then, calculate the arithmetic mean of \eqref{XX} and \eqref{YY}
+$$
+f_N(x)=\int_{-\pi}^{\pi}\cfrac{f(x+u)+f(x-u)}{2}D_N(u) \dif u
+$$
+Since the function inside the integral are even
+$$
+f_N(x)=\int_{0}^{\pi}\left[ f(x+u)+f(x-u) \right]D_N(u) \dif u
+$$
+On the other hand, we have
+$$
+\int_{0}^{\pi}D_N(u) \dif u = \frac{1}{2}
+$$
+which gives:
+$$
+\cfrac{f(x^{+})+f(x^{-})}{2} = \int_{0}^{\pi} \left[ f(x^{+})+f(x^{-}) \right]D_N(u) \dif u
+$$
+Hence
+\begin{align}
+	\cfrac{f(x^{+})+f(x^{-})}{2} - f_N(x) &=
+	\ \int_{0}^{\pi} \left[ \phi_{1}(u,x)+\phi_{2}(u,x) \right] D_N(u) \dif u \nonumber \\
+	\phi_{1}(u,x)&=f(x^{+})-f(x+u) \nonumber \\
+	\phi_{2}(u,x)&=f(x^{-})-f(x-u) \nonumber
+\end{align}
+And, we can set $g(u)=\cfrac{\phi_{1}(u)}{u}$, then
+$$
+U(u)=\cfrac{u}{2 \sin( \frac{u}{2} ) } \ for \ u \neq 0, \ U(0)=1
+$$
+$U(u)$ is continuous on $\left[-\pi,\pi\right]$, Result 1 will imply
+$$
+\lim_{N \rightarrow \infty}\int_{0}^{\pi}g(u)U(u)sin(N+\frac{1}{2})u \dif u = 0
+$$
+And since $\int_{0}^{\pi}g(u)U(u)sin(N+\frac{1}{2})u \dif u = \int_{0}^{\pi}\phi_{1}(u,x)D_N(u)\dif u$, we can get
+$$
+\int_{0}^{\pi} \phi_{1}(u,x)D_N(u)\dif u = 0
+$$
+The proof of 
+$$
+\lim_{N \rightarrow \infty}\int_{0}^{\pi}\phi_{2}(u,x)\dif u=0
+$$
+will be done similarly.
+So we can obtain 
+\begin{align}
+	& \cfrac{f(x^{+})+f(x^{-})}{2}-f_N(x)=0 \quad (N \rightarrow \infty) \nonumber \\
+	& f_N(x)=\cfrac{f(x^{+})+f(x^{-})}{2} \quad (N \rightarrow \infty) \nonumber
+\end{align}
 \end{itemize}
-
+Although many signal satisfy the Dirichlet conditions, not all signals satisfy these conditions.
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.75\linewidth]{figure/fig_6.png}}
+\end{figure}
 In 1898, American Albert Michelson made a harmonic analyzer. When he tested the square wave, he was surprised to find that the $X_n(T)$ of the square wave jumped near the discontinuous points, and the peak size of the fluctuation did not seem to decrease with the increase of n! So he wrote to Gibbs, the famous mathematical physicist at that time. Gibbs got interested to the behavior of the sequence of Fourier partial sums around these points. \par
-Indeed, when x is close to the point 0, the graphs present a bump. Let us do some calculations to justify this phenomenon. Consider the derivative of $\mathscr{F}_f(t)$.
+Indeed, when x is close to the point 0, the graphs present a bump, even when N is quite large. Let us do some calculations to justify this phenomenon. Consider the derivative of $\mathscr{F}_f(t)$.
 \begin{align}
 \mathscr{F}^{'}_f(t) 
 	&= \ \cfrac{4}{\pi} \sum\limits_{n=0}^N{\cos [2\pi (2k+1)t]} \nonumber \\
@@ -350,6 +397,11 @@ These bumps seen around 0 are behaving like a wave with a height equal to 0.9045
 $$
 0.09\left[ f(t_0+) + f(t_0-)\right]
 $$
+This is called \textbf{Gibbs Phenomenon}: Even though $N \rightarrow \infty$, there is approximately $9\%$ difference at the discontinuity.
+\begin{figure}[H]
+	\centerline{\textbf{Square wave's Gibbs phenomenon near $x=0$}}
+	\centerline{\animategraphics[autoplay,loop,scale=0.5]{2}{figure/fig_7/fig-}{1}{10}}
+\end{figure}
 \clearpage
 
 \section{\sc III. Open the gate to frequency domain}
