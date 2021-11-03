@@ -216,7 +216,26 @@ $$
 \clearpage
 
 \section{\sc II. When the infinite sum has to be applied}
-Now, we have an almost-Fourier series. But we can find ,when we use sine wave to build square wave, this sequence converges to the square wave except at the point $x_0 = 0$, which a point of discontinuity of it. In 1898, American Albert Michelson made a harmonic analyzer. When he tested the square wave, he was surprised to find that the $X_n(T)$ of the square wave jumped near the discontinuous points, and the peak size of the fluctuation did not seem to decrease with the increase of n! So he wrote to Gibbs, the famous mathematical physicist at that time. Gibbs got interested to the behavior of the sequence of Fourier partial sums around these points. \par
+Now, we have an almost-Fourier series. But we can find ,when we use sine wave to build square wave, this sequence converges to the square wave except at the point $x_0 = 0$, which a point of discontinuity of it.There has been a dispute in the field of mathematics about whether sinusoids can be combined into a signal with edges and corners. The protagonists of this dispute are Fourier and Lagrange. \par
+Because of the finite sum of sinusoids satisfies infinitely smooth condition, infinitely summation of sinusoids must be applied in order to build signal which has sharp edge. It looks like 
+$$
+f_T(t) = \sum\limits_{n=-\infty}^{\infty} {C_n e^{jn\Omega t}}
+$$
+When the infinite sum has to be applied, we should check its convergence.Fourier claims that any arbitrary periodic signal can be expand in its Fourier series. No one can prove or falsify it until Dirichlet did the proof. \par
+
+\begin{itemize}
+\item Continuous case: If the periodic signal $f(t)$ is a continuous function of t, then its Fourier series converge uniformly.
+$$
+\lim_{N \rightarrow \infty} \left[ f(t) - \sum\limits_{n=-N}^{N}{C_n e^{jn\Omega t}} \right] = 0
+$$
+\item Finite-energy case: If periodic signal $f(t)$ has finite energy in a single period, the Fourier series converge in the MSE sense.
+$$
+\lim_{N \rightarrow \infty} 
+$$
+\item Dirichlet case:
+\end{itemize}
+
+In 1898, American Albert Michelson made a harmonic analyzer. When he tested the square wave, he was surprised to find that the $X_n(T)$ of the square wave jumped near the discontinuous points, and the peak size of the fluctuation did not seem to decrease with the increase of n! So he wrote to Gibbs, the famous mathematical physicist at that time. Gibbs got interested to the behavior of the sequence of Fourier partial sums around these points. \par
 Indeed, when x is close to the point 0, the graphs present a bump. Let us do some calculations to justify this phenomenon. Consider the derivative of $\mathscr{F}_f(t)$.
 \begin{align}
 \mathscr{F}^{'}_f(t) 
