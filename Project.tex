@@ -11,6 +11,7 @@
 \usepackage{color}
 \usepackage{mathrsfs}
 \usepackage{animate}
+\usepackage{tikz}
 
 \oddsidemargin -.5in
 \evensidemargin -.5in
@@ -406,9 +407,89 @@ This is called \textbf{Gibbs Phenomenon}: Even though $N \rightarrow \infty$, th
 \clearpage
 
 \section{\sc III. Open the gate to frequency domain}
+\hspace{.05in}
+Fourier series is actually signal construction.
+\begin{itemize}
+	\item \textbf{Select building blocks:} choose frequency components whose frequency is the integer multiples of the signal frequency.
+	\item \textbf{Polish building blocks:} using Fourier coefficients to modify the amplitude and phase of blocks.
+	\item \textbf{Build your signal up:} achieved by the linear combination of modified building block.
+\end{itemize}
 \begin{figure}[H]
-	\centerline{\animategraphics[autoplay,loop,scale=0.8]{10}{figure/fig_8/fig-}{0}{199}}
+	\begin{minipage}{0.5\linewidth}
+		\centerline{\animategraphics[autoplay,loop,width=0.8\linewidth]{10}{figure/fig_8/fig-}{0}{199}}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\centerline{\includegraphics[width=0.9\textwidth]{figure/fig_9.png}}
+	\end{minipage}
 \end{figure}
+And based on Fourier series, any arbitrary periodic signal $f(t)$ of period $T$ can be decomposed by linear combination of sinusoidals.
+\begin{align}
+f(t)	&= \ \frac{A_0}{2} + \sum\limits_{n=1}^{\infty}{A_n \cos (n \Omega t + \phi_{n})} \nonumber \\
+		&= \ \frac{A_0}{2} + \sum\limits_{n=1}^{\infty}{a_n \cos (n \Omega t)} + \sum\limits_{n=1}^{\infty}{b_n \sin (n \Omega t)} \nonumber \\ 
+		&= \ \sum\limits_{n=-\infty}^{\infty}{C_n e^{jn\Omega t} } , \ C_n=\left|C_n\right| e^{j\angle C_n} \nonumber
+\end{align}
+With the above content, we can no longer focus on the performance of the signal in the time domain, but analyze its performance in the frequency domain. We can characterize a signal by its spectrum. Signal Spectrum characterize how the signal parameters change with frequency components.\par 
+\begin{itemize}
+	\item \textbf{Magnitude Spectrum:} variation between the magnitude of harmonics and the frequency component.\par 
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.9\linewidth]{figure/fig_10.png}}
+		\centerline{\textbf{Left:}single-side magnitude spectrum}
+		\centerline{\textbf{Right:}double-side magnitude spectrum}
+	\end{figure}
+	By applying $\left|C_n\right|=\frac{A_n}{2}$, we can get the double-side magnitude spectrum.\par
+	\item \textbf{Phase Spectrum:} variation between the phase of harmonics and the frequency component.\par 
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.9\linewidth]{figure/fig_11.png}}
+		\centerline{\textbf{Left:}single-side phase spectrum}
+		\centerline{\textbf{Right:}double-side phase spectrum}
+	\end{figure}
+	By applying $\angle C_n=\phi_n$, we can get the double-side phase spectrum.
+\end{itemize}
+From the figure above, we can obtain that \textbf{The double-side magnitude spectrum is evenly symmetric while the double-side phase spectrum is oddly symmetric if the periodic signal is real.}\par 
+In general, periodic signal is a power signal.
+$$
+\mathscr{P}=\frac{1}{T} \int_{0}^{T}\left|f(t)\right|^2 \dif t
+$$
+By applying Fourier series
+\begin{align}
+\mathscr{P} = \ \frac{1}{T} \int_{0}^{T} {\sum\limits_{n=-\infty}^{\infty} \sum\limits_{m=-\infty}^{\infty} {C_n C_m e^{j(n-m)\Omega t}}} \dif t \nonumber
+\end{align}
+And we can obtain that
+\begin{align}
+	\int_{0}^{T} e^{j(n-m)t}=
+	\begin{cases}
+		T & n=m \\
+		0 & n\neq m
+	\end{cases} \nonumber
+\end{align}
+Hence
+\begin{align}
+	\mathscr{P} 
+	&= \ \frac{1}{T} \sum\limits_{n=-\infty}^{\infty} \sum\limits_{m=-\infty}^{\infty} \left|C_n\right| \cdot \left|C_m\right| \cdot T, \ n=m \nonumber \\
+	&= \ \sum\limits_{n=-\infty}^{\infty}{\left|C_n\right|^2} \nonumber \\
+	&= \ \left(\frac{A_0}{2}\right)^2 + \frac{1}{2}\sum\limits_{n=1}^{\infty}A_n^2 \nonumber
+\end{align}
+This is called Parseval's Theorem. \par 
+\centering
+\begin{tikzpicture}
+	\draw[gray!80] (-2,0) -- (-2,0.1);
+	\draw[gray!80] (2,0) -- (2,0.1);
+	\draw[->] (-3,0) -- (3,0) node[right] {$t$};
+	\draw[->] (0,-0.2) -- (0,2) node[above] {$f(t)$};
+	\draw[blue,line width=1pt] (-2.5,0) -- (-2.5,1);
+	\draw[blue,line width=1pt] (-2.5,1) -- (-1.5,1);
+	\draw[blue,line width=1pt] (-1.5,1) -- (-1.5,0);
+	\draw[blue,line width=1pt] (-0.5,0) -- (-0.5,1);
+	\draw[blue,line width=1pt] (-0.5,1) -- (0.5,1);
+	\draw[blue,line width=1pt] (0.5,1) -- (0.5,0);
+	\draw[blue,line width=1pt] (1.5,0) -- (1.5,1);
+	\draw[blue,line width=1pt] (1.5,1) -- (2.5,1);
+	\draw[blue,line width=1pt] (2.5,1) -- (2.5,0);
+	\node at (-2,-0.2) {$-T$};
+	\node at (2,-0.2) {$T$};
+	\node at (-0.5,-0.3) {$-\frac{\tau}{2}$};
+	\node at (0.5,-0.3) {$\frac{\tau}{2}$};
+\end{tikzpicture}
 \clearpage
 
 \section{\sc IV. From periodicity to aperiodicity}
