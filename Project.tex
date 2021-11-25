@@ -470,26 +470,76 @@ Hence
 	&= \ \left(\frac{A_0}{2}\right)^2 + \frac{1}{2}\sum\limits_{n=1}^{\infty}A_n^2 \nonumber
 \end{align}
 This is called Parseval's Theorem. \par 
-\centering
-\begin{tikzpicture}
-	\draw[gray!80] (-2,0) -- (-2,0.1);
-	\draw[gray!80] (2,0) -- (2,0.1);
-	\draw[->] (-3,0) -- (3,0) node[right] {$t$};
-	\draw[->] (0,-0.2) -- (0,2) node[above] {$f(t)$};
-	\draw[blue,line width=1pt] (-2.5,0) -- (-2.5,1);
-	\draw[blue,line width=1pt] (-2.5,1) -- (-1.5,1);
-	\draw[blue,line width=1pt] (-1.5,1) -- (-1.5,0);
-	\draw[blue,line width=1pt] (-0.5,0) -- (-0.5,1);
-	\draw[blue,line width=1pt] (-0.5,1) -- (0.5,1);
-	\draw[blue,line width=1pt] (0.5,1) -- (0.5,0);
-	\draw[blue,line width=1pt] (1.5,0) -- (1.5,1);
-	\draw[blue,line width=1pt] (1.5,1) -- (2.5,1);
-	\draw[blue,line width=1pt] (2.5,1) -- (2.5,0);
-	\node at (-2,-0.2) {$-T$};
-	\node at (2,-0.2) {$T$};
-	\node at (-0.5,-0.3) {$-\frac{\tau}{2}$};
-	\node at (0.5,-0.3) {$\frac{\tau}{2}$};
-\end{tikzpicture}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\draw[gray!80] (-2,0) -- (-2,0.1);
+		\draw[gray!80] (2,0) -- (2,0.1);
+		\draw[->] (-3,0) -- (3,0) node[right] {$t$};
+		\draw[->] (0,-0.2) -- (0,2) node[above] {$f(t)$};
+		\draw[blue,line width=1pt] (-2.5,0) -- (-2.5,1);
+		\draw[blue,line width=1pt] (-2.5,1) -- (-1.5,1);
+		\draw[blue,line width=1pt] (-1.5,1) -- (-1.5,0);
+		\draw[blue,line width=1pt] (-0.5,0) -- (-0.5,1);
+		\draw[blue,line width=1pt] (-0.5,1) -- (0.5,1);
+		\draw[blue,line width=1pt] (0.5,1) -- (0.5,0);
+		\draw[blue,line width=1pt] (1.5,0) -- (1.5,1);
+		\draw[blue,line width=1pt] (1.5,1) -- (2.5,1);
+		\draw[blue,line width=1pt] (2.5,1) -- (2.5,0);
+		\node at (-2,-0.2) {$-T$};
+		\node at (2,-0.2) {$T$};
+		\node at (-0.5,-0.3) {$-\frac{\tau}{2}$};
+		\node at (0.5,-0.3) {$\frac{\tau}{2}$};
+	\end{tikzpicture}
+	\centering\textbf{Signal 1}
+\end{figure}
+
+If we have a signal which like \textbf{Signal 1}, we can get
+
+\begin{align}
+C_n &= \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{-jn \Omega t} \dif t \nonumber \\
+	&= \left. \frac{1}{T} \cfrac{ e^{-j \Omega t} }{ -jn\Omega } \right|_{-\frac{\tau}{2}}^{\frac{\tau}{2}} \nonumber \\
+	&= \frac{\tau}{T}Sa(\frac{n\pi \tau}{T}) \nonumber 
+\end{align}
+
+Then we can define the signal bandwidth: \\
+\textbf{The spectrum bandwidth contains most significant harmonics contributing in signal construction}. \par
+So we can obtain that reject harmonics beyond bandwidth does not distort signal severely. Then we can set $\tau$ and $T$ to some unique value. Firstly, we can set $T$ to a constant value $4$, while changing the ratio of $T$ to $\tau$.
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.9\linewidth]{figure/bw_1.png}}
+	\centerline{\textbf{$\tau = \frac{T}{4} = 1$}}
+\end{figure}
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.9\linewidth]{figure/bw_2.png}}
+	\centerline{\textbf{$\tau = \frac{T}{8} = 0.5$}}
+\end{figure}
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.9\linewidth]{figure/bw_3.png}}
+	\centerline{\textbf{$\tau = \frac{T}{16} = 0.25$}}
+\end{figure}
+According to the three figures above, we can conclude 
+\textbf{the 1st reciprocal relation between time-domain and frequency-domain:} 
+The more expand the signal is in time-domain, the more compressed the signal is in frequency-domain. In short, the signal bandwidth is inversely proportional to the time duration of the signal $\tau$.
+Also, we can set $\tau$ to a constant value, and change the the ratio of $\tau$ to $T$.
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.9\linewidth]{figure/bw_4.png}}
+	\centerline{\textbf{$T = 4\tau = 1$}}
+\end{figure}
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.9\linewidth]{figure/bw_5.png}}
+	\centerline{\textbf{$T = 8\tau = 1$}}
+\end{figure}
+\begin{figure}[H]
+	\centerline{\includegraphics[width=0.9\linewidth]{figure/bw_6.png}}
+	\centerline{\textbf{$T = 16\tau = 1$}}
+\end{figure}
+And through these three figures, we can obtain two other conclusions:
+\begin{itemize}
+	\item \textbf{Invariant $T$ and decreasing $\tau$:} The gap remains unchanged while signal bandwidth increases.
+	\item \textbf{Invariant $\tau$ and increasing $T$:} The gap shrinks while signal bandwidth not change.
+\end{itemize}
+At this time, we will have a question, if $T$ tends to infinity, what will happen in the frequency domain. If $T\rightarrow \infty$, the signal will change from periodic to aperiodic. We can boldly assume that when the time-domain is aperiodic, the frequency-domain will become continuous. And let's prove it.
 \clearpage
 
 \section{\sc IV. From periodicity to aperiodicity}
