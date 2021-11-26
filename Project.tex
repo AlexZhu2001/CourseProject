@@ -12,6 +12,9 @@
 \usepackage{mathrsfs}
 \usepackage{animate}
 \usepackage{tikz}
+\usepackage{longtable}
+\usepackage{makecell}
+\usetikzlibrary{positioning}
 
 \oddsidemargin -.5in
 \evensidemargin -.5in
@@ -36,7 +39,9 @@
       \setlength{\leftmargin}{0.2in}}}{\end{list}}
 
 \newcommand*{\dif}{\mathop{}\!\mathrm{d}}
-
+\newcommand*{\tabbox}[1]{\Gape[2.2pt]{#1}}
+\newcommand*{\ftarrow}{\stackrel{\mathscr{F}}{\longleftrightarrow}}
+\newcommand*{\ftfunc}{{\mathscr{F}_f}}
 \begin{document}
 
 \name{Course Project for Signal and System  \vspace*{.1in}$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\includegraphics[height=6em]{244}}
@@ -51,6 +56,7 @@
 \end{tabular}
 
 \section{\sc I. Where the story begins}
+\subsection{\sc \textbf{Some Real Questions}}
 When we play the piano,we can press a key, such as Do. Its waveform is like the second curve in the Figure 1. Also we can get La which like the first curve in Figure 1. Then we press these two keys at the same time. Then we will get the third curve in the Figure 1.\par
 But when we get a signal which like the third curve, we want to know which two buttons generate it. We want to know how to build this signal.\par
 Generally we want to decompose a signal, which like the 4th curve in the Figure 1, into the combination of some simple signal.\par
@@ -66,7 +72,10 @@ Generally we want to decompose a signal, which like the 4th curve in the Figure 
 \end{figure}
 In fact, many physical problems have the same properties, such as heat transfer problem. If we have a rod, which temperature function is $T=cos(x)$ .
 The change of its temperature with time t presents a simple exponential decay form, as I showed in the first sub-graph of Figure 2.\par
-But for a more complex temperature function $T=f(x)$ like the second sub-graph of Figure 2, if we can decompose it into the composition of a series sine and cosine function, we can simply migrate it to $T=F(x,t)$.\par
+But for a more complex temperature function $T=f(x)$ like the second sub-graph of Figure 2, if we can decompose it into the composition of a series sine and cosine function, we can simply migrate it to $T=F(x,t)$.
+
+\subsection{\sc \textbf{Intuitive Understanding}}
+
 Let's start with simple one:a sinusoidal signal of 4 beats per second. We can construct a rotating vector whose length is the same as this sinusoidal signal value of the current time. The graph of this vector will like the second sub-graph in Figure 3. We can find a magic phenomenon.When the frequency of this rotating vector is equal to this sinusoidal signal's frequency, a large number of points in this image are biased to the same side.\par
 If we imagine this graph is having some kind of mass to it, like metal wire. We can find, as we change the frequency, the center of mass wobbles around a bit at origin. But when the frequency is equal to our signal frequency, the mass center is unusually far to the right. If we draw the x position of the mass center changed by the frequency into a $f-x$ graph. It will be like the third sub-figure in Figure 3. There is a high peak at 4 Hz position.\par
 \begin{figure}[H]
@@ -79,7 +88,10 @@ If we imagine this graph is having some kind of mass to it, like metal wire. We 
 		\centerline{\textbf{Figure 4}}
 	\end{minipage}
 \end{figure}
-And we can do the same operation in a combination of two signal: $cos(2\pi 3t)+cos(2\pi 5t)$. Then we can get similar result: two peaks at 3 and 5 Hz. And now, we can make a bold assumptions that we can use the combination of sine or cosine signal to build another arbitrary signal. And we should proof it.\par
+And we can do the same operation in a combination of two signal: $cos(2\pi 3t)+cos(2\pi 5t)$. Then we can get similar result: two peaks at 3 and 5 Hz. And now, we can make a bold assumptions that we can use the combination of sine or cosine signal to build another arbitrary signal. And we should proof it.
+
+\subsection{\sc \textbf{Proof It!}}
+
 Let us assume $f(t)=\sum\limits^{N}A_n \sin (n\omega t+\phi)$, then we will prove it.
 Since we want to using the combination of sine function, we let $f_T(t)$ equals to the sum of n-terms sine signal.
 %%Orignal sine formula
@@ -179,6 +191,8 @@ $$
 C_n=\frac{1}{T}\int_0^T{f_T(t) e^{-jn\Omega t} \dif t}
 $$
 
+\subsection{\sc \textbf{Is That True?}}
+
 Now, we can get a series which is contain the combination of sine and cosine function. We can simply use it to verify our suggestion. If we have a square wave with frequency of 1Hz and 50\% duty cycle. Let's calculate its Fourier coefficient. And we should always start with $C_0$.
 %%C0 of square wave
 \begin{align}
@@ -211,12 +225,14 @@ And the Fourier series of square wave will be
 $$
 \mathscr{F}_f(t)= \ \cfrac{4}{\pi} \sum\limits_{k=1}^K{\cfrac{1}{2k-1} \sin [2\pi (2k+1)t]}
 $$
+Using Matlab to verify it.
 \begin{figure}[H]
 	\centerline{\animategraphics[autoplay,loop,scale=0.5]{1}{figure/fig_5/fig-}{0}{5}}
 \end{figure}
 \clearpage
 
 \section{\sc II. When the infinite sum has to be applied}
+\subsection{\sc \textbf{Apply Infinity Summation}}
 Now, we have an almost-Fourier series. But we can find ,when we use sine wave to build square wave, this sequence converges to the square wave except at the point $x_0 = 0$, which a point of discontinuity of it.There has been a dispute in the field of mathematics about whether sinusoids can be combined into a signal with edges and corners. The protagonists of this dispute are Fourier and Lagrange. \par
 Because of the finite sum of sinusoids satisfies infinitely smooth condition, infinitely summation of sinusoids must be applied in order to build signal which has sharp edge. It looks like 
 $$
@@ -339,8 +355,9 @@ So we can obtain
 \end{itemize}
 Although many signal satisfy the Dirichlet conditions, not all signals satisfy these conditions.
 \begin{figure}[H]
-	\centerline{\includegraphics[width=0.75\linewidth]{figure/fig_6.png}}
+	\centerline{\includegraphics[width=0.55\linewidth]{figure/fig_6.png}}
 \end{figure}
+\subsection{\sc \textbf{Gibbs Phenomenon}}
 In 1898, American Albert Michelson made a harmonic analyzer. When he tested the square wave, he was surprised to find that the $X_n(T)$ of the square wave jumped near the discontinuous points, and the peak size of the fluctuation did not seem to decrease with the increase of n! So he wrote to Gibbs, the famous mathematical physicist at that time. Gibbs got interested to the behavior of the sequence of Fourier partial sums around these points. \par
 Indeed, when x is close to the point 0, the graphs present a bump, even when N is quite large. Let us do some calculations to justify this phenomenon. Consider the derivative of $\mathscr{F}_f(t)$.
 \begin{align}
@@ -408,6 +425,7 @@ This is called \textbf{Gibbs Phenomenon}: Even though $N \rightarrow \infty$, th
 
 \section{\sc III. Open the gate to frequency domain}
 \hspace{.05in}
+\subsection{\sc \textbf{Build up a Periodic Signal}}
 Fourier series is actually signal construction.
 \begin{itemize}
 	\item \textbf{Select building blocks:} choose frequency components whose frequency is the integer multiples of the signal frequency.
@@ -422,6 +440,7 @@ Fourier series is actually signal construction.
 		\centerline{\includegraphics[width=0.9\textwidth]{figure/fig_9.png}}
 	\end{minipage}
 \end{figure}
+\subsection{\sc \textbf{Signal Spectrum}}
 And based on Fourier series, any arbitrary periodic signal $f(t)$ of period $T$ can be decomposed by linear combination of sinusoidals.
 \begin{align}
 f(t)	&= \ \frac{A_0}{2} + \sum\limits_{n=1}^{\infty}{A_n \cos (n \Omega t + \phi_{n})} \nonumber \\
@@ -445,7 +464,8 @@ With the above content, we can no longer focus on the performance of the signal 
 	\end{figure}
 	By applying $\angle C_n=\phi_n$, we can get the double-side phase spectrum.
 \end{itemize}
-From the figure above, we can obtain that \textbf{The double-side magnitude spectrum is evenly symmetric while the double-side phase spectrum is oddly symmetric if the periodic signal is real.}\par 
+From the figure above, we can obtain that \textbf{The double-side magnitude spectrum is evenly symmetric while the double-side phase spectrum is oddly symmetric if the periodic signal is real.} 
+\subsection{\sc \textbf{Power of Periodic Signal}}
 In general, periodic signal is a power signal.
 $$
 \mathscr{P}=\frac{1}{T} \int_{0}^{T}\left|f(t)\right|^2 \dif t
@@ -469,8 +489,8 @@ Hence
 	&= \ \sum\limits_{n=-\infty}^{\infty}{\left|C_n\right|^2} \nonumber \\
 	&= \ \left(\frac{A_0}{2}\right)^2 + \frac{1}{2}\sum\limits_{n=1}^{\infty}A_n^2 \nonumber
 \end{align}
-This is called Parseval's Theorem. \par 
-
+This is called Parseval's Theorem.
+\subsection{\sc \textbf{The Relation between Time-Domain and Frequency-Domain}}
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
@@ -543,6 +563,150 @@ At this time, we will have a question, if $T$ tends to infinity, what will happe
 \clearpage
 
 \section{\sc IV. From periodicity to aperiodicity}
+\subsection{\sc \textbf{Just $T \rightarrow \infty$?}}
+We can assume that the signal is defined over $[a,b]$. And the period of this signal is big enough to contain the whole signal. And we can calculate the Fourier series over the big period and making $T$ go to infinity.
+\begin{align}
+	C_n &= \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{-jn\Omega t} \dif t \nonumber \\ 
+		&= \frac{1}{T} \int_{a}^{b} f(t) e^{-j \frac{2\pi n}{T} t} \dif t \nonumber
+\end{align} 
+The magnitude of $C_n$ can be calculated as
+\begin{align}
+	\left| C_n \right| 
+	&= \frac{1}{T} \left| \int_{a}^{b} f(t) e^{-j \frac{2\pi n}{T} t} \dif t \right| \nonumber \\
+	&\leq \frac{1}{T} \int_{a}^{b} \left| f(t) \right| \left| e^{-j\frac{2\pi n}{T} t} \right| \dif t \nonumber \\
+	\left| C_n \right| 
+	& \leq \frac{1}{T} \int_{a}^{b} \left| f(t) \right| \dif t \nonumber
+\end{align}
+The $\int_{a}^{b} \left| f(t) \right| \dif t $ is a definite integration, we can denote it by $M$.
+$$
+\left| C_n \right| \leq \frac{1}{T} M
+$$
+Apply limits to both sides
+$$
+\lim_{T\rightarrow \infty} \left| C_n \right| \leq \lim_{T\rightarrow \infty} \frac{1}{T} M = 0
+$$
+\subsection{\sc \textbf{Real Substitution Method}}
+All coefficients go to zero! And we can obtain they are killed by the $\frac{1}{T}$. Well, it seems like just let's T goes to infinity is infeasible. Let's go back to the beginning and see what role $T$ plays in forming a signal.
+By Fourier Series, we can obtain
+\begin{align}
+	&f(t) = \sum\limits_{n=-\infty}^{\infty} C_n e^{jn \Omega t} \label{FTAA} \\
+	&C_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f_T(t) e^{-jn\Omega t} \dif t 
+	\quad \left(\Omega = \frac{2\pi}{T}\right) \label{FTBB}
+\end{align}
+Substitute \eqref{FTBB} into \eqref{FTAA}
+\begin{align}
+	f(t) = \sum\limits_{n=-\infty}^{\infty} 
+		   \frac{1}{T} \left[ \int_{-\frac{T}{2}}^{\frac{T}{2}} f_T(t) e^{-jn\Omega t} \dif t \right]
+		   e^{jn \Omega t} \nonumber
+\end{align}
+Let's denote $n\Omega = \omega$, we can get
+\begin{align}
+	 \Delta \omega &= (n+1)\Omega - n\Omega = \Omega = \frac{2\pi}{T} \label{FTCC} \\
+	 f(t) 
+	 &= \sum\limits_{n=-\infty}^{\infty} 
+	 \frac{1}{T} \left[ \int_{-\frac{T}{2}}^{\frac{T}{2}} f_T(t) e^{-j\omega t} \dif t \right]
+	 e^{j\omega t} \label{FTDD}
+\end{align}
+Substitute \eqref{FTCC} into \eqref{FTDD}
+\begin{align}
+	f(t) = \frac{1}{2\pi} \sum\limits_{n=-\infty}^{\infty} 
+	\Delta \omega \left[ \int_{-\frac{T}{2}}^{\frac{T}{2}} f_T(t) e^{-j\omega t} \dif t \right]
+	e^{j\omega t} \label{FTEE}
+\end{align}
+In \eqref{FTEE}, when $T \rightarrow \infty$, we can obtain
+\begin{align}
+	& \int_{-\frac{T}{2}}^{\frac{T}{2}} \rightarrow \int_{-\infty}^{\infty} \nonumber \\
+	& \sum\limits_{n=-\infty}^{\infty} \Delta \omega \rightarrow \int_{-\infty}^{\infty} \dif \omega \nonumber \\
+	& n\Omega \rightarrow \omega \nonumber
+\end{align}
+So, we can get
+$$
+f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{j\omega t} \dif \omega \int_{-\infty}^{\infty} f(t) e^{-j\omega t} \dif t
+$$
+So we can denote $\mathscr{F}_f(\omega) = \int_{-\infty}^{\infty} f(t) e^{-j\omega t} \dif t$. This is called the \textbf{Fourier Transform} of given signal $f(t)$.\par
+Also we can get the \textbf{inverse Fourier Transform}:
+$$
+	f(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \mathscr{F}_f(\omega) e^{j\omega t} \dif \omega
+$$
+The Fourier Transform of $f(t)$ exists if $f(t)$ is absolutely integrable.And $f(t)$ and $\mathscr{F}_f(\omega)$ together are defined as \textbf{Fourier Transform pair} as
+$$
+f(t) \stackrel{\mathscr{F}}{\longleftrightarrow} \mathscr{F}_f(\omega)
+$$
+\subsection{\sc \textbf{Fourier Transform of Common Functions}}
+\begin{longtable}[c]{ccc}
+	\caption{Fourier Transform of Common Function}
+	\label{tab:my-table}\\
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	No& \tabbox{$f(t)$} & \tabbox{$\ftfunc(\omega)$} \\ \hline
+	1 & \tabbox{$e^{-at}$} & \tabbox{$\frac{1}{a+j\omega}$} \\
+	2 & \tabbox{$e^{-a\left|t\right|}$} & \tabbox{$\frac{2a}{a^2+\omega^2}$} \\
+	3 & \tabbox{$rect\left(\frac{t}{\tau}\right)$} & \tabbox{$\tau Sa(\frac{\omega\tau}{2})$} \\
+	4 & \tabbox{$\delta(t)$} & \tabbox{$1$} \\
+	5 & \tabbox{$sgn(t)$} & \tabbox{$\frac{2}{j\omega}$} \\
+	6 & \tabbox{$u(t)$} & \tabbox{$\pi\delta(\omega)+\frac{1}{j\omega}$} \\
+	7 & \tabbox{$cos(\omega_0 t)$} & \tabbox{$\pi\left[ \delta(\omega+\omega_0) + \delta(\omega-\omega_0) \right]$} \\
+	8 & \tabbox{$sin(\omega_0 t)$} & \tabbox{$j\pi\left[ \delta(\omega+\omega_0) - \delta(\omega-\omega_0) \right]$} \\
+	9 & \tabbox{$\frac{1}{t}$} & \tabbox{$-j\pi sgn(\omega)$} \\
+	\hline
+\end{longtable}
+\clearpage
+\subsection{\sc \textbf{Some Properties}}
+% Please add the following required packages to your document preamble:
+% \usepackage{longtable}
+% Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
+\begin{longtable}[c]{ccc}
+	\caption{Properties}
+	\label{tab:my-table}\\
+	\hline
+	\endfirsthead
+	%
+	\endhead
+	%
+	\multicolumn{3}{l}{\tabbox{\textbf{Transformation}}} \\ \hline
+	1 & Time-Domain Scaling & \tabbox{$ f(at) \ftarrow \frac{1}{\left| a \right|} \ftfunc(\frac{\omega}{a}) $} \\
+	2 & Time-Domain Shifting & \tabbox{$ f(t-t_0) \ftarrow e^{-j\omega t_0} \ftfunc(\omega) $} \\
+	3 & Frequency-Domain Shifting & \tabbox{$ f(t)e^{j\omega_0 t} \ftarrow \ftfunc(\omega-\omega_0) $} \\
+	4 & Conjugate & \tabbox{$ f^*(t) \ftarrow \ftfunc^*(\omega) $} \\
+	5 & Duality & \tabbox{$ \ftfunc(t) \ftarrow 2\pi f(-\omega) $} \\
+	\hline
+	\multicolumn{3}{l}{\tabbox{\textbf{Calculation}}} \\ \hline
+	1 & Linearity & \tabbox{$ af_1(t)+bf_2(t) \ftarrow a\ftfunc_1(\omega)+b\ftfunc_2(\omega) $} \\
+	2 & Time-Domain Convolution & \tabbox{$ f_1(t) \ast f_2(t) \ftarrow \ftfunc_1(\omega)\ftfunc_2(\omega) $} \\
+	3 & Frequency-Domain Convolution & \tabbox{$ f_1(t)f_2(t) \ftarrow \frac{1}{2\pi}\ftfunc_1(\omega) \ast \ftfunc_2(\omega) $} \\
+	4 & Time-Domain Differentiation & \tabbox{$ \frac{\dif^k}{\dif t^k}f(t) \ftarrow (j\omega)^k \ftfunc(\omega) $} \\
+	5 & Time-Domain Integration & \tabbox{$ \int_{-\infty}^{t} f(\tau) \dif \tau \ftarrow \pi \ftfunc(0) \delta(\omega) + \frac{\ftfunc(\omega)}{j\omega} $} \\
+	6 & Frequency-Domain Differentiation & \tabbox{$ t^kf(t) \ftarrow (j)^k\frac{\dif^k}{\dif \omega^k} \ftfunc(\omega) $} \\
+	\hline
+	\multicolumn{3}{l}{\tabbox{\textbf{Parseval's Theorem}}} \\ \hline
+	\multicolumn{3}{c}{\tabbox{$\int_{-\infty}^{\infty} \left|f(t)\right|^2 \dif t = \frac{1}{2\pi} \int_{-\infty}^{\infty}\left|\mathscr{F}_f(\omega)\right|^2 \dif \omega$}} \\ \hline
+\end{longtable}
+\subsection{\sc \textbf{One Target Two World}}
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\draw[line width=3pt] (0,1) -- (0,4);
+		\draw[line width=3pt] (0,-1) -- (0,-3);
+		\filldraw[line width=1pt,fill=black] (-0.9,0.1) -- (-1.4,0.1) -- (-1.4,0.2) -- (-1.8,0) -- (-1.4,-0.2) -- (-1.4,-0.1) -- (-0.9,-0.1) -- cycle;
+		\filldraw[line width=1pt,fill=black] (0.9,0.1) -- (1.4,0.1) -- (1.4,0.2) -- (1.8,0) -- (1.4,-0.2) -- (1.4,-0.1) -- (0.9,-0.1) -- cycle;
+		\filldraw[line width=2pt,draw=blue!80,fill=blue!20] (0,0) circle(1);
+		\node[scale=2] (1) at (0,0) {$\mathscr{F}$};
+		\node (2) at (-3,2) {Linear convolution};
+		\node (3) at (-3,1) {$y_zs(t)=f(t) \ast h(t)$};
+		\node (4) at (3,2) {Multiplication};
+		\node (5) at (3,1) {$\mathscr{F}_{y_zs} = \mathscr{F}_f(\omega)\mathscr{F}_h(\omega) $};
+		\node (6) at (-3,-2) {Differential Equation};
+		\node (7) at (-3,-1) {$\sum\limits_n a_ny^{(n)}(t)$};
+		\node (8) at (3,-2) {Power equation};
+		\node (9) at (3,-1) {$\sum\limits_n a_n(j\omega)^n\mathscr{F}_y(\omega)$};
+		\node (p) at (0,3) {};
+		\node[left=of p] {\textbf{Time Domain}};
+		\node[right=of p] {\textbf{Frequency Domain}};
+	\end{tikzpicture}
+\end{figure}
 \clearpage
 
 \end{resume}
