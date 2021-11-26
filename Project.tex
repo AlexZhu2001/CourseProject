@@ -51,7 +51,7 @@
 \end{tabular}
 
 \section{\sc I. Where the story begins}
-When we play the piano,we can press a key,such as Do. Its waveform is like the second curve in the Figure 1. Also we can get La which like the first curve in Figure 1. Then we press these two keys at the same time. Then we will get the third curve in the Figure 1.\par
+When we play the piano,we can press a key, such as Do. Its waveform is like the second curve in the Figure 1. Also we can get La which like the first curve in Figure 1. Then we press these two keys at the same time. Then we will get the third curve in the Figure 1.\par
 But when we get a signal which like the third curve, we want to know which two buttons generate it. We want to know how to build this signal.\par
 Generally we want to decompose a signal, which like the 4th curve in the Figure 1, into the combination of some simple signal.\par
 \begin{figure}[H]
@@ -351,7 +351,7 @@ Indeed, when x is close to the point 0, the graphs present a bump, even when N i
 Using trigonometric identities, we get 
 \begin{align}
 \pi\sin(t) \mathscr{F}^{'}_f(t) 
-	&= \ 2\left[ \sin(2t) + (\sin(4t)-\sin(2t)) + (\sin(6t)-\sin(4t)) + \cdots + (\sin(2nt)-\sin((2n-2)t))\right] \nonumber \\
+	&= \ 2\left\{ \sin(2t) + \left[\sin(4t)-\sin(2t)\right] + \left[\sin(6t)-\sin(4t)\right] + \cdots + \left[ \sin(2nt)-\sin(2n-2)t \right] \right\} \nonumber \\
 	&= \ 2\sin(2nt) \nonumber
 \end{align}
 So the critical points of $\mathscr{F}_f(t)$ are 
@@ -491,7 +491,7 @@ This is called Parseval's Theorem. \par
 		\node at (2,-0.2) {$T$};
 		\node at (-0.5,-0.3) {$-\frac{\tau}{2}$};
 		\node at (0.5,-0.3) {$\frac{\tau}{2}$};
-	\end{tikzpicture}
+	\end{tikzpicture} \\
 	\centering\textbf{Signal 1}
 \end{figure}
 
