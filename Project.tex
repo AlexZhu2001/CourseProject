@@ -93,7 +93,7 @@ If we imagine this graph is having some kind of mass to it, like metal wire. We 
 		\centerline{\textbf{Figure 4}}
 	\end{minipage}
 \end{figure}
-And we can do the same operation in a combination of two signal: $cos(2\pi 3t)+cos(2\pi 5t)$. Then we can get similar result: two peaks at 3 and 5 Hz. And now, we can make a bold assumptions that we can use the combination of sine or cosine signal to build another arbitrary signal. And we should proof it.
+And we can do the same operation in a combination of two signal: $cos(6\pi t)+cos(10\pi t)$. Then we can get similar result: two peaks at 3 and 5 Hz. And now, we can make a bold assumptions that we can use the combination of sine or cosine signal to build another arbitrary signal. And we should proof it.
 
 \subsection{\textbf{Proof It!}}
 
@@ -382,10 +382,10 @@ $$
 $$
 Since the functions are odd, we will only focus on the behavior to the right of 0. The closest critical point to the right of 0 is $\frac{\pi}{2n}$. Hence 
 $$
-\mathscr{F}_f(\cfrac{\pi}{2n}) = \cfrac{4}{\pi} {
+\mathscr{F}_f(\cfrac{\pi}{2n}) = \cfrac{4}{\pi} \left[{
 	\sin(\frac{\pi}{2n}) + \cfrac{\sin(\frac{3\pi}{2n})}{3} + \cdots +
-	\cfrac{\sin(\frac{(2n-1)\pi}{2n})}{2n-1}
-}
+	\cfrac{\sin\frac{(2n-1)\pi}{2n}}{2n-1}
+}\right]
 $$
 In order to find the asymptotic behavior of the this sequence, when n is large, we will use the Riemann sums. Indeed, consider the function $Sa(t) = \frac{\sin(t)}{t}$ on the interval $[0,\pi]$, and the partition $\left\{{\frac{k\pi}{n}}, \;\;k \in [1,n]\right\}$ of $[0,\pi]$. So the Riemann sums
 $$
