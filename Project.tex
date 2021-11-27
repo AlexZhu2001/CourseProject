@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{cases}
 \usepackage{amsfonts}
+\usepackage{amsbsy}
 \usepackage{stfloats}
 \usepackage{cite}
 \usepackage{color}
@@ -14,6 +15,7 @@
 \usepackage{tikz}
 \usepackage{longtable}
 \usepackage{makecell}
+\usepackage{caption}
 \usetikzlibrary{positioning}
 
 \oddsidemargin -.5in
@@ -37,11 +39,14 @@
       \setlength{\parsep}{0in} \setlength{\parskip}{0in}
       \setlength{\topsep}{0in} \setlength{\partopsep}{0in} 
       \setlength{\leftmargin}{0.2in}}}{\end{list}}
-
+%Declare My command and format
 \newcommand*{\dif}{\mathop{}\!\mathrm{d}}
 \newcommand*{\tabbox}[1]{\Gape[2.2pt]{#1}}
 \newcommand*{\ftarrow}{\stackrel{\mathscr{F}}{\longleftrightarrow}}
 \newcommand*{\ftfunc}{{\mathscr{F}_f}}
+%\DeclareMathAlphabet{\mathscrbf}{OMS}{mdugm}{b}{n}
+\newcommand*{\mathscrbf}[1]{\pmb{\mathscr{#1}}}
+%End Declare
 \begin{document}
 
 \name{Course Project for Signal and System  \vspace*{.1in}$\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ $\includegraphics[height=6em]{244}}
@@ -56,7 +61,7 @@
 \end{tabular}
 
 \section{\sc I. Where the story begins}
-\subsection{\sc \textbf{Some Real Questions}}
+\subsection{\textbf{Some Real Questions}}
 When we play the piano,we can press a key, such as Do. Its waveform is like the second curve in the Figure 1. Also we can get La which like the first curve in Figure 1. Then we press these two keys at the same time. Then we will get the third curve in the Figure 1.\par
 But when we get a signal which like the third curve, we want to know which two buttons generate it. We want to know how to build this signal.\par
 Generally we want to decompose a signal, which like the 4th curve in the Figure 1, into the combination of some simple signal.\par
@@ -74,7 +79,7 @@ In fact, many physical problems have the same properties, such as heat transfer 
 The change of its temperature with time t presents a simple exponential decay form, as I showed in the first sub-graph of Figure 2.\par
 But for a more complex temperature function $T=f(x)$ like the second sub-graph of Figure 2, if we can decompose it into the composition of a series sine and cosine function, we can simply migrate it to $T=F(x,t)$.
 
-\subsection{\sc \textbf{Intuitive Understanding}}
+\subsection{\textbf{Intuitive Understanding}}
 
 Let's start with simple one:a sinusoidal signal of 4 beats per second. We can construct a rotating vector whose length is the same as this sinusoidal signal value of the current time. The graph of this vector will like the second sub-graph in Figure 3. We can find a magic phenomenon.When the frequency of this rotating vector is equal to this sinusoidal signal's frequency, a large number of points in this image are biased to the same side.\par
 If we imagine this graph is having some kind of mass to it, like metal wire. We can find, as we change the frequency, the center of mass wobbles around a bit at origin. But when the frequency is equal to our signal frequency, the mass center is unusually far to the right. If we draw the x position of the mass center changed by the frequency into a $f-x$ graph. It will be like the third sub-figure in Figure 3. There is a high peak at 4 Hz position.\par
@@ -90,7 +95,7 @@ If we imagine this graph is having some kind of mass to it, like metal wire. We 
 \end{figure}
 And we can do the same operation in a combination of two signal: $cos(2\pi 3t)+cos(2\pi 5t)$. Then we can get similar result: two peaks at 3 and 5 Hz. And now, we can make a bold assumptions that we can use the combination of sine or cosine signal to build another arbitrary signal. And we should proof it.
 
-\subsection{\sc \textbf{Proof It!}}
+\subsection{\textbf{Proof It!}}
 
 Let us assume $f(t)=\sum\limits^{N}A_n \sin (n\omega t+\phi)$, then we will prove it.
 Since we want to using the combination of sine function, we let $f_T(t)$ equals to the sum of n-terms sine signal.
@@ -191,7 +196,7 @@ $$
 C_n=\frac{1}{T}\int_0^T{f_T(t) e^{-jn\Omega t} \dif t}
 $$
 
-\subsection{\sc \textbf{Is That True?}}
+\subsection{\textbf{Is That True?}}
 
 Now, we can get a series which is contain the combination of sine and cosine function. We can simply use it to verify our suggestion. If we have a square wave with frequency of 1Hz and 50\% duty cycle. Let's calculate its Fourier coefficient. And we should always start with $C_0$.
 %%C0 of square wave
@@ -232,7 +237,7 @@ Using Matlab to verify it.
 \clearpage
 
 \section{\sc II. When the infinite sum has to be applied}
-\subsection{\sc \textbf{Apply Infinity Summation}}
+\subsection{\textbf{Apply Infinity Summation}}
 Now, we have an almost-Fourier series. But we can find ,when we use sine wave to build square wave, this sequence converges to the square wave except at the point $x_0 = 0$, which a point of discontinuity of it.There has been a dispute in the field of mathematics about whether sinusoids can be combined into a signal with edges and corners. The protagonists of this dispute are Fourier and Lagrange. \par
 Because of the finite sum of sinusoids satisfies infinitely smooth condition, infinitely summation of sinusoids must be applied in order to build signal which has sharp edge. It looks like 
 $$
@@ -357,7 +362,7 @@ Although many signal satisfy the Dirichlet conditions, not all signals satisfy t
 \begin{figure}[H]
 	\centerline{\includegraphics[width=0.55\linewidth]{figure/fig_6.png}}
 \end{figure}
-\subsection{\sc \textbf{Gibbs Phenomenon}}
+\subsection{\textbf{Gibbs Phenomenon}}
 In 1898, American Albert Michelson made a harmonic analyzer. When he tested the square wave, he was surprised to find that the $X_n(T)$ of the square wave jumped near the discontinuous points, and the peak size of the fluctuation did not seem to decrease with the increase of n! So he wrote to Gibbs, the famous mathematical physicist at that time. Gibbs got interested to the behavior of the sequence of Fourier partial sums around these points. \par
 Indeed, when x is close to the point 0, the graphs present a bump, even when N is quite large. Let us do some calculations to justify this phenomenon. Consider the derivative of $\mathscr{F}_f(t)$.
 \begin{align}
@@ -401,7 +406,7 @@ $$
 \lim_{n \rightarrow \infty} \mathscr{F}_f \left(\frac{\pi}{2n}\right) = \frac{2}{\pi}\int_{0}^{\pi}Sa(t) \dif t.
 $$
 
-Using Taylor polynomials of $\sin(t)$ at 0, we get
+There is no convergence of expression for integration of $Sa(t)$. Using Taylor polynomials of $\sin(t)$ at 0, we get
 
 $$
 \frac{2}{\pi}\int_{0}^{\pi}\frac{\sin(t)}{t} \dif t = 2 - \frac{\pi^2}{9} + \frac{\pi^4}{300} - \frac{\pi^6}{17640}+\ldots
@@ -425,7 +430,7 @@ This is called \textbf{Gibbs Phenomenon}: Even though $N \rightarrow \infty$, th
 
 \section{\sc III. Open the gate to frequency domain}
 \hspace{.05in}
-\subsection{\sc \textbf{Build up a Periodic Signal}}
+\subsection{\textbf{Build up a Periodic Signal}}
 Fourier series is actually signal construction.
 \begin{itemize}
 	\item \textbf{Select building blocks:} choose frequency components whose frequency is the integer multiples of the signal frequency.
@@ -440,7 +445,7 @@ Fourier series is actually signal construction.
 		\centerline{\includegraphics[width=0.9\textwidth]{figure/fig_9.png}}
 	\end{minipage}
 \end{figure}
-\subsection{\sc \textbf{Signal Spectrum}}
+\subsection{\textbf{Signal Spectrum}}
 And based on Fourier series, any arbitrary periodic signal $f(t)$ of period $T$ can be decomposed by linear combination of sinusoidals.
 \begin{align}
 f(t)	&= \ \frac{A_0}{2} + \sum\limits_{n=1}^{\infty}{A_n \cos (n \Omega t + \phi_{n})} \nonumber \\
@@ -465,7 +470,7 @@ With the above content, we can no longer focus on the performance of the signal 
 	By applying $\angle C_n=\phi_n$, we can get the double-side phase spectrum.
 \end{itemize}
 From the figure above, we can obtain that \textbf{The double-side magnitude spectrum is evenly symmetric while the double-side phase spectrum is oddly symmetric if the periodic signal is real.} 
-\subsection{\sc \textbf{Power of Periodic Signal}}
+\subsection{\textbf{Power of Periodic Signal}}
 In general, periodic signal is a power signal.
 $$
 \mathscr{P}=\frac{1}{T} \int_{0}^{T}\left|f(t)\right|^2 \dif t
@@ -490,7 +495,7 @@ Hence
 	&= \ \left(\frac{A_0}{2}\right)^2 + \frac{1}{2}\sum\limits_{n=1}^{\infty}A_n^2 \nonumber
 \end{align}
 This is called Parseval's Theorem.
-\subsection{\sc \textbf{The Relation between Time-Domain and Frequency-Domain}}
+\subsection{\textbf{The Relation between Time-Domain and Frequency-Domain}}
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
@@ -563,7 +568,7 @@ At this time, we will have a question, if $T$ tends to infinity, what will happe
 \clearpage
 
 \section{\sc IV. From periodicity to aperiodicity}
-\subsection{\sc \textbf{Just $T \rightarrow \infty$?}}
+\subsection{\textbf{Just $T \rightarrow \infty$?}}
 We can assume that the signal is defined over $[a,b]$. And the period of this signal is big enough to contain the whole signal. And we can calculate the Fourier series over the big period and making $T$ go to infinity.
 \begin{align}
 	C_n &= \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{-jn\Omega t} \dif t \nonumber \\ 
@@ -585,7 +590,7 @@ Apply limits to both sides
 $$
 \lim_{T\rightarrow \infty} \left| C_n \right| \leq \lim_{T\rightarrow \infty} \frac{1}{T} M = 0
 $$
-\subsection{\sc \textbf{Real Substitution Method}}
+\subsection{\textbf{Correct Substitution Method}}
 All coefficients go to zero! And we can obtain they are killed by the $\frac{1}{T}$. Well, it seems like just let's T goes to infinity is infeasible. Let's go back to the beginning and see what role $T$ plays in forming a signal.
 By Fourier Series, we can obtain
 \begin{align}
@@ -632,10 +637,10 @@ The Fourier Transform of $f(t)$ exists if $f(t)$ is absolutely integrable.And $f
 $$
 f(t) \stackrel{\mathscr{F}}{\longleftrightarrow} \mathscr{F}_f(\omega)
 $$
-\subsection{\sc \textbf{Fourier Transform of Common Functions}}
+\subsection{\textbf{Fourier Transform of Common Functions}}
 \begin{longtable}[c]{ccc}
 	\caption{Fourier Transform of Common Function}
-	\label{tab:my-table}\\
+	\label{ft-func}\\
 	\hline
 	\endfirsthead
 	%
@@ -654,26 +659,26 @@ $$
 	\hline
 \end{longtable}
 \clearpage
-\subsection{\sc \textbf{Some Properties}}
+\subsection{\textbf{Some Properties}}
 % Please add the following required packages to your document preamble:
 % \usepackage{longtable}
 % Note: It may be necessary to compile the document several times to get a multi-page table to line up properly
 \begin{longtable}[c]{ccc}
 	\caption{Properties}
-	\label{tab:my-table}\\
+	\label{ft-prop}\\
 	\hline
 	\endfirsthead
 	%
 	\endhead
 	%
-	\multicolumn{3}{l}{\tabbox{\textbf{Transformation}}} \\ \hline
+	\multicolumn{3}{l}{\Gape[3pt]{\textbf{Transformation}}} \\ \hline
 	1 & Time-Domain Scaling & \tabbox{$ f(at) \ftarrow \frac{1}{\left| a \right|} \ftfunc(\frac{\omega}{a}) $} \\
 	2 & Time-Domain Shifting & \tabbox{$ f(t-t_0) \ftarrow e^{-j\omega t_0} \ftfunc(\omega) $} \\
 	3 & Frequency-Domain Shifting & \tabbox{$ f(t)e^{j\omega_0 t} \ftarrow \ftfunc(\omega-\omega_0) $} \\
 	4 & Conjugate & \tabbox{$ f^*(t) \ftarrow \ftfunc^*(\omega) $} \\
 	5 & Duality & \tabbox{$ \ftfunc(t) \ftarrow 2\pi f(-\omega) $} \\
 	\hline
-	\multicolumn{3}{l}{\tabbox{\textbf{Calculation}}} \\ \hline
+	\multicolumn{3}{l}{\Gape[3pt]{\textbf{Calculation}}} \\ \hline
 	1 & Linearity & \tabbox{$ af_1(t)+bf_2(t) \ftarrow a\ftfunc_1(\omega)+b\ftfunc_2(\omega) $} \\
 	2 & Time-Domain Convolution & \tabbox{$ f_1(t) \ast f_2(t) \ftarrow \ftfunc_1(\omega)\ftfunc_2(\omega) $} \\
 	3 & Frequency-Domain Convolution & \tabbox{$ f_1(t)f_2(t) \ftarrow \frac{1}{2\pi}\ftfunc_1(\omega) \ast \ftfunc_2(\omega) $} \\
@@ -681,10 +686,10 @@ $$
 	5 & Time-Domain Integration & \tabbox{$ \int_{-\infty}^{t} f(\tau) \dif \tau \ftarrow \pi \ftfunc(0) \delta(\omega) + \frac{\ftfunc(\omega)}{j\omega} $} \\
 	6 & Frequency-Domain Differentiation & \tabbox{$ t^kf(t) \ftarrow (j)^k\frac{\dif^k}{\dif \omega^k} \ftfunc(\omega) $} \\
 	\hline
-	\multicolumn{3}{l}{\tabbox{\textbf{Parseval's Theorem}}} \\ \hline
+	\multicolumn{3}{l}{\Gape[3pt]{\textbf{Parseval's Theorem}}} \\ \hline
 	\multicolumn{3}{c}{\tabbox{$\int_{-\infty}^{\infty} \left|f(t)\right|^2 \dif t = \frac{1}{2\pi} \int_{-\infty}^{\infty}\left|\mathscr{F}_f(\omega)\right|^2 \dif \omega$}} \\ \hline
 \end{longtable}
-\subsection{\sc \textbf{One Target Two World}}
+\subsection{\textbf{One Target Two World}}
 \begin{figure}[H]
 	\centering
 	\begin{tikzpicture}
@@ -693,19 +698,156 @@ $$
 		\filldraw[line width=1pt,fill=black] (-0.9,0.1) -- (-1.4,0.1) -- (-1.4,0.2) -- (-1.8,0) -- (-1.4,-0.2) -- (-1.4,-0.1) -- (-0.9,-0.1) -- cycle;
 		\filldraw[line width=1pt,fill=black] (0.9,0.1) -- (1.4,0.1) -- (1.4,0.2) -- (1.8,0) -- (1.4,-0.2) -- (1.4,-0.1) -- (0.9,-0.1) -- cycle;
 		\filldraw[line width=2pt,draw=blue!80,fill=blue!20] (0,0) circle(1);
-		\node[scale=2] (1) at (0,0) {$\mathscr{F}$};
-		\node (2) at (-3,2) {Linear convolution};
+		\node[scale=2] (1) at (0,0) {$\mathscrbf{F}$};
+		\node (2) at (-3,2) {Linear Convolution};
 		\node (3) at (-3,1) {$y_zs(t)=f(t) \ast h(t)$};
 		\node (4) at (3,2) {Multiplication};
 		\node (5) at (3,1) {$\mathscr{F}_{y_zs} = \mathscr{F}_f(\omega)\mathscr{F}_h(\omega) $};
 		\node (6) at (-3,-2) {Differential Equation};
 		\node (7) at (-3,-1) {$\sum\limits_n a_ny^{(n)}(t)$};
-		\node (8) at (3,-2) {Power equation};
+		\node (8) at (3,-2) {Power Equation};
 		\node (9) at (3,-1) {$\sum\limits_n a_n(j\omega)^n\mathscr{F}_y(\omega)$};
 		\node (p) at (0,3) {};
 		\node[left=of p] {\textbf{Time Domain}};
 		\node[right=of p] {\textbf{Frequency Domain}};
 	\end{tikzpicture}
+\end{figure}
+We know we can use impulse response $h(t)$ to characterize the effect of CT LTI system. The Fourier transform of impulse response, namely frequency response $\mathscr{F}_h(\omega)$, can also be used to characterize the system as 
+$$
+\mathscr{F}_h(\omega) = \mathscr{F}\left[h(t)\right] = \int_{-\infty}^{\infty} h(t)e^{-j\omega t} \dif t
+$$
+Also we can get that 
+\begin{align}
+	\mathscr{F}_h(\omega) 
+	&= \frac{\mathscr{F}_y(\omega)}{\mathscr{F}_f(\omega)} \nonumber \\
+	&= \left|\frac{\mathscr{F}_y(\omega)}{\mathscr{F}_f(\omega)}\right| e^{j\left[ \phi_y(\omega) - \phi_f(\omega) \right]} \nonumber 
+\end{align}
+\begin{itemize}
+	\item Denote $\left|\mathscr{F}_h(\omega)\right| = \left|\frac{\mathscr{F}_y(\omega)}{\mathscr{F}_f(\omega)}\right|$ the \textbf{magnitude-frequency response} characterizing the effect of the system onto input magnitude.
+	\item Denote $\phi_h(\omega = )\phi_y(\omega) - \phi_f(\omega)$ the \textbf{phase-frequency response} characterizing the effect of the system onto input phase.
+\end{itemize}
+\subsection{\textbf{Distortion Free Transmission and Real-world System}}
+In a communication system, we hope that the signal transmission will not produce distortion. At this time, we will be concerned about how a system changes the excitation, which can be considered "no loss". We can easily restore the magnitude scale of a signal using a gain module. Also, we can simply use delay module to shift its phase. So we can denote the \textbf{Distortion free transmission}: Comparing the excitation $f(t)$ and the corresponding response $y(t)$, the system only \textit{scales the magnitude and shift the phase}. Mathematically, it can be expressed as
+$$
+y(t) = Kf(t-t_D) and \mathscr{F}_y(\omega) = K\mathscr{F}_f(\omega)e^{-j\omega t_D}
+$$
+So we can know, for a system transmitting a signal without distortion, the frequency response of this system must be
+$$
+\mathscr{F}_h(\omega) = Ke^{-j\omega t_D}
+$$
+For a physically implementable system, the impulse response can not show up before the signal is fed.
+$$
+h(t) =0, \ t < 0
+$$
+Correspondingly, the frequency response of the system must satisfy
+\begin{align}
+\int_{-\infty}^{\infty} \left|\mathscr{F}_h(\omega)\right|^2 \dif \omega < \infty \nonumber \\ 
+\int_{-\infty}^{\infty} \frac{\left| ln \left| \mathscr{F}_h(\omega) \right| \right|}{1+\omega^2} \dif \omega < \infty \nonumber
+\end{align}
+known as \textbf{Paley-Wiener criterion}. Also, it can be described as for a system to be physically implementable, the frequency response can be zero \textit{at certain frequency spot} but cannot be zero \textit{over certain frequency portion}.
+\subsection{\textbf{Some Applications}}
+\subsubsection{\sc 1. Frequency-Domain Filter}
+\textbf{Definition}: Allowing specific frequency signal components to pass through and block other components.
+\begin{itemize}
+	\item \textbf{Low-pass Filter:} The components with frequency smaller than the cut-off frequency $\omega_c$ can pass, otherwise, the components are rejected. \par
+	\begin{minipage}{0.5\linewidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{figure/filter/Low-pass}
+			\caption*{Low-Pass Filter Simulation}
+		\end{figure}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\begin{align}
+			\mathscr{F}_{h_L}(\omega) &= rect(\frac{\omega}{2\omega_c}) e^{-j\omega t_D} \nonumber \\
+			h_L(t) &= \frac{\omega_c}{\pi}Sa\left[ \omega_c(t-t_D) \right] \nonumber
+		\end{align}
+	\end{minipage}
+	\item \textbf{High-pass Filter:} The components with frequency greater than the cut-off frequency $\omega_c$ can pass, otherwise, the components are rejected. \par
+	\begin{minipage}{0.5\linewidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{figure/filter/High-pass}
+			\caption*{High-Pass Filter Simulation}
+		\end{figure}	
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\begin{align}
+			\mathscr{F}_{h_H}(\omega) &= 1-rect(\frac{\omega}{2\omega_c}) e^{-j\omega t_D} \nonumber \\
+			h_H(t) &= \delta (t)-\frac{\omega_c}{\pi}Sa\left[ \omega_c(t-t_D) \right] \nonumber
+		\end{align}
+	\end{minipage}
+	\item \textbf{Band-pass Filter:} The components with frequency over specified portion $\omega_h - \omega_l$, defined as bandwidth, can pass while the other components are rejected. \par
+	\begin{minipage}{0.5\linewidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.9\linewidth]{figure/filter/Band-pass}
+			\caption*{Band-Pass Filter Simulation}
+		\end{figure}	
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\begin{align}
+			\mathscr{F}_{h_B}(\omega) &= \left[ rect\left(\frac{\omega}{B}+\omega_0\right) +rect\left(\frac{\omega}{B}-\omega_0\right) \right] e^{-j\omega t_D} \nonumber \\
+			h_B(t) &= \frac{B}{\pi}Sa\left[ \frac{B(t-t_D)}{2} \right] cos\left[ \omega_0(t-t_D) \right] \nonumber
+		\end{align}
+	\end{minipage}
+\end{itemize}
+
+\subsubsection{\sc 2. Frequency-Domain Watermark}
+Also, Fourier Transform has its 2-D form. We can use it to process something like pictures. We mark the original picture as $f_1$ and the water mark as $f_s$. Apply 2-D Fast Fourier Transform to $f_1$, we can denote
+$$
+\mathscr{F}_{f_1} = FFT2(f_1)
+$$
+In order to let our watermark uniformly distributed in frequency domain, we can apply random transform $r$ to sign picture $f_s$
+$$
+f_s^{'} = r(f_s)
+$$
+Next, we introduce the energy coefficient $\alpha$ to synthesize the watermark and the original image in frequency domain
+$$
+\mathscr{F}_{o} = \mathscr{F}_{f_1} + \alpha f_s^{'}
+$$
+And do inverse Fast Fourier Transform, we can get
+$$
+f_o = IFFT2(\mathscr{F}_{o})
+$$
+If you want to restore the watermark in this picture, apply 2-D Fast Fourier Transform to $f_o$, 
+$$
+\mathscr{F}_m = FFT2(f_o)
+$$
+Then subtract the frequency domain of the original image and do the inverse transformation of random transformation $r^{-1}$ to obtain the time domain representation of the watermark
+$$
+f_s = r^{-1} (\frac{\mathscr{F}_m - \mathscr{F}_{f_1}}{\alpha})
+$$
+\begin{figure}[H]
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{figure/watermark/origin.png}
+		\caption*{Original Picture}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{figure/watermark/wm.png}
+		\caption*{Single Side Watermark}
+	\end{minipage}
+\end{figure}
+\begin{figure}[H]
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{figure/watermark/wmed.png}
+		\caption*{Watermarked Picture}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\includegraphics[width=\linewidth]{figure/watermark/re.png}
+		\caption*{Solved Watermark}
+	\end{minipage}
+\end{figure}
+We can find add watermark in frequency-domain will not damage a lot in time-domain, and it also can resist some attack like cut or scale. The bigger energy coefficient $\alpha$ is, the more robust it will be.\par
+\subsubsection{\sc 3. Picture Process}
+2-D Fourier Transform also can help us do some picture process. If we apply Fourier transform to a picture. The light points in the center of frequency spectrum is low frequency components, and the edge of frequency spectrum is high frequency part. \par
+If we using a low-pass filter which will murder the low frequency components, this operation will blur the picture. For the image, the gradient change between objects and between background and background is very small, and the places with large gray change are generally concentrated on the edge of the image, that is, the place where the object and background intersect. So the low-pass filter will weaken the difference between the edge brightness and the surrounding pixels' brightness.
+\begin{figure}[H]
+	\includegraphics[width=0.8\linewidth]{figure/pic_process/blur.png}
+\end{figure}
+Similarly, if we apply high-pass filter to picture, it will find the edge of the object in picture.
+\begin{figure}[H]
+	\includegraphics[width=0.8\linewidth]{figure/pic_process/edge.png}
 \end{figure}
 \clearpage
 
