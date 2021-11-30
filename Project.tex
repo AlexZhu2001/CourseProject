@@ -62,7 +62,7 @@
 
 \section{\sc I. Where the story begins}
 \subsection{\textbf{Some Real Questions}}
-When we play the piano,we can press a key, such as Do. Its waveform is like the second curve in the Figure 1. Also we can get La which like the first curve in Figure 1. Then we press these two keys at the same time. Then we will get the third curve in the Figure 1.\par
+When we play the piano, we can press a key, such as Do. Its waveform is like the second curve in the Figure 1. Also we can get La which like the first curve in Figure 1. Then we press these two keys at the same time. Then we will get the third curve in the Figure 1.\par
 But when we get a signal which like the third curve, we want to know which two buttons generate it. We want to know how to build this signal.\par
 Generally we want to decompose a signal, which like the 4th curve in the Figure 1, into the combination of some simple signal.\par
 \begin{figure}[H]
@@ -75,7 +75,7 @@ Generally we want to decompose a signal, which like the 4th curve in the Figure 
     \centerline{\textbf{Figure 2}}
   \end{minipage}
 \end{figure}
-In fact, many physical problems have the same properties, such as heat transfer problem. If we have a rod, which temperature function is $T=cos(x)$ .
+In fact, many physical problems have the same properties, such as heat transfer problem. If we have a rod, which temperature function is $T=cos(x)$. 
 The change of its temperature with time t presents a simple exponential decay form, as I showed in the first sub-graph of Figure 2.\par
 But for a more complex temperature function $T=f(x)$ like the second sub-graph of Figure 2, if we can decompose it into the composition of a series sine and cosine function, we can simply migrate it to $T=F(x,t)$.
 
@@ -97,8 +97,7 @@ And we can do the same operation in a combination of two signal: $cos(6\pi t)+co
 
 \subsection{\textbf{Proof It!}}
 
-Let us assume $f(t)=\sum\limits^{N}A_n \sin (n\omega t+\phi)$, then we will prove it.
-Since we want to using the combination of sine function, we let $f_T(t)$ equals to the sum of n-terms sine signal.
+Let us assume $f(t)=\sum\limits^{N}A_n \sin (n\omega t+\phi)$, then we will prove it. Since we want to using the combination of sine function, we let $f_T(t)$ equals to the sum of n-terms sine signal.
 %%Orignal sine formula
 $$
 f_T(t)=C_0+\sum\limits_{n=1}^N{\sin(n\Omega t+\phi_{n} ) } \quad \Omega=\frac{2\pi}{t}
@@ -107,19 +106,19 @@ $$
 And we can make some modifications to the formula.
 %%Expansion of last formula
 $$
-f_T(t)=C_0+\sum\limits_{n=1}^N{[
+f_T(t)=C_0+\sum\limits_{n=1}^N{\left[
 	A_n\sin(n\Omega t)\cos\phi_n+
 	A_n\cos(n\Omega t)\sin\phi_n
-	]}
+	\right]}
 $$
 
 Let's denote $a_n=A_n\cos\phi_n$ and $b_n=A_n\sin\phi_n$
 %%Denote an and bn
 $$
-f_T(t)=C_0+\sum\limits_{n=1}^N{[
+f_T(t)=C_0+\sum\limits_{n=1}^N{\left[
 	a_n\sin(n\Omega t)+
 	b_n\cos(n\Omega t)
-	]}
+	\right]}
 $$
 
 Apply Euler's formula
@@ -164,11 +163,11 @@ Now we have the Fourier series of periodic signal $f_T(t)$, but we don't know ho
 We can do integration in both sides
 %%Integration of left and right
 \begin{align}
-&\int_{0}^{T}{C_m\dif t}=\int_{0}^{T}{(f_T(t) e^{-jm\Omega t}-
-	\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{C_n e^{j(n-m)\Omega t}})
+&\int_{0}^{T}{C_m\dif t}=\int_{0}^{T}{\left[f_T(t) e^{-jm\Omega t}-
+	\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{C_n e^{j(n-m)\Omega t}}\right]
 	\dif t} \nonumber \\
-&TC_m=\int_{0}^{T}{[f_T(t) e^{-jm\Omega t}-
-	\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{C_n e^{j(n-m)\Omega t}}]
+&TC_m=\int_{0}^{T}{\left[f_T(t) e^{-jm\Omega t}-
+	\sum\limits_{ \substack{n=-N \\ n\neq m} }^{N}{C_n e^{j(n-m)\Omega t}}\right]
 	\dif t} \nonumber
 \end{align}
 
@@ -268,7 +267,7 @@ If $f(t)$ is a periodic signal satisfying the Dirichlet conditions, and $t_a$ is
 	$$
 	\item For $t = t_a$
 	$$
-	\lim_{N \rightarrow \infty} \left[ \sum\limits_{n=-N}{N} C_n e^{jn\Omega t_a}\right] =
+	\lim_{N \rightarrow \infty} \left[ \sum\limits_{n=-N}^{N} C_n e^{jn\Omega t_a}\right] =
 	\frac{1}{2}\left[ f(t_a^{-} + f(t_a^{+})) \right]
 	$$
 \end{enumerate}
@@ -367,43 +366,43 @@ In 1898, American Albert Michelson made a harmonic analyzer. When he tested the 
 Indeed, when x is close to the point 0, the graphs present a bump, even when N is quite large. Let us do some calculations to justify this phenomenon. Consider the derivative of $\mathscr{F}_f(t)$.
 \begin{align}
 \mathscr{F}^{'}_f(t) 
-	&= \ \cfrac{4}{\pi} \sum\limits_{n=0}^N{\cos [2\pi (2k+1)t]} \nonumber \\
+	&= \ \cfrac{4}{\pi} \sum\limits_{n=0}^N{\cos [(2k+1)t]} \nonumber \\
 	&= \ \cfrac{4}{\pi} \left[ \cos(t) + \cos(3t) + cos(5t) + \cdots + cos((2N-1)t) \right] \nonumber 
 \end{align}
 Using trigonometric identities, we get 
 \begin{align}
 \pi\sin(t) \mathscr{F}^{'}_f(t) 
-	&= \ 2\left\{ \sin(2t) + \left[\sin(4t)-\sin(2t)\right] + \left[\sin(6t)-\sin(4t)\right] + \cdots + \left[ \sin(2nt)-\sin(2n-2)t \right] \right\} \nonumber \\
-	&= \ 2\sin(2nt) \nonumber
+	&= \ 2\left\{ \sin(2t) + \left[\sin(4t)-\sin(2t)\right] + \left[\sin(6t)-\sin(4t)\right] + \cdots + \left[ \sin(2Nt)-\sin(2N-2)t \right] \right\} \nonumber \\
+	&= \ 2\sin(2Nt) \nonumber
 \end{align}
 So the critical points of $\mathscr{F}_f(t)$ are 
 $$
-2nt = \pm\pi , \pm 2\pi,\cdots,\pm (2n-1)\pi
+2Nt = \pm\pi , \pm 2\pi,\cdots,\pm (2N-1)\pi
 $$
-Since the functions are odd, we will only focus on the behavior to the right of 0. The closest critical point to the right of 0 is $\frac{\pi}{2n}$. Hence 
+Since the functions are odd, we will only focus on the behavior to the right of 0. The closest critical point to the right of 0 is $\frac{\pi}{2N}$. Hence 
 $$
-\mathscr{F}_f(\cfrac{\pi}{2n}) = \cfrac{4}{\pi} \left[{
-	\sin(\frac{\pi}{2n}) + \cfrac{\sin(\frac{3\pi}{2n})}{3} + \cdots +
-	\cfrac{\sin\frac{(2n-1)\pi}{2n}}{2n-1}
+\mathscr{F}_f(\cfrac{\pi}{2N}) = \cfrac{4}{\pi} \left[{
+	\sin(\frac{\pi}{2N}) + \cfrac{\sin(\frac{3\pi}{2N})}{3} + \cdots +
+	\cfrac{\sin\frac{(2N-1)\pi}{2N}}{2N-1}
 }\right]
 $$
-In order to find the asymptotic behavior of the this sequence, when n is large, we will use the Riemann sums. Indeed, consider the function $Sa(t) = \frac{\sin(t)}{t}$ on the interval $[0,\pi]$, and the partition $\left\{{\frac{k\pi}{n}}, \;\;k \in [1,n]\right\}$ of $[0,\pi]$. So the Riemann sums
+In order to find the asymptotic behavior of the this sequence, when $N$ is large, we will use the Riemann sums. Indeed, consider the function $Sa(t) = \frac{\sin(t)}{t}$ on the interval $[0,\pi]$, and the partition $\left\{{\frac{k\pi}{N}}, \;\;k \in [1,N]\right\}$ of $[0,\pi]$. So the Riemann sums
 $$
-\frac{\pi}{n}
+\frac{\pi}{N}
 \left(
-	\cfrac{\sin(\cfrac{\pi}{2n})}{\cfrac{\pi}{2n}} + \cdots +
-	\cfrac{\sin(\cfrac{(2n-1)\pi}{2n})}{\cfrac{(2n-1)\pi}{2n}}
+	\cfrac{\sin(\cfrac{\pi}{2N})}{\cfrac{\pi}{2N}} + \cdots +
+	\cfrac{\sin(\cfrac{(2N-1)\pi}{2N})}{\cfrac{(2N-1)\pi}{2N}}
 \right)
 $$
 converges to $\int_{0}^{\pi} Sa(t) \dif t$. Easy calculations show that these sums are equal to 
 $$
-\cfrac{\pi}{2}{\mathscr{F}_f \left( \cfrac{\pi}{2n} \right) }
+\cfrac{\pi}{2}{\mathscr{F}_f \left( \cfrac{\pi}{2N} \right) }
 $$
 
 Hence
 
 $$
-\lim_{n \rightarrow \infty} \mathscr{F}_f \left(\frac{\pi}{2n}\right) = \frac{2}{\pi}\int_{0}^{\pi}Sa(t) \dif t.
+\lim_{N \rightarrow \infty} \mathscr{F}_f \left(\frac{\pi}{2N}\right) = \frac{2}{\pi}\int_{0}^{\pi}Sa(t) \dif t.
 $$
 
 There is no convergence of expression for integration of $Sa(t)$. Using Taylor polynomials of $\sin(t)$ at 0, we get
