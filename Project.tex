@@ -215,7 +215,7 @@ Apply $\Omega \ = \ \frac{2\pi}{T} $
 C_n	&= \ \Big[-\frac{1}{jn2\pi} e^{-jn2\pi t}\Big|_{0}^{0.5} \Big] -
 		 \Big[\frac{1}{jn2\pi} e^{-jn2\pi t}\Big|_{0.5}^{1} \Big] \nonumber \\
 	&= \ \cfrac{j}{2\pi n}\Big[ e^{-j\pi n} -1 -e^{-j2\pi n} +e^{-j\pi n} \Big] \nonumber \\
-	&= \ \cfrac{j}{2\pi n}\Big[ 2e^{-j\pi n -1 -e^{-j2\pi n}} \Big] \nonumber
+	&= \ \cfrac{j}{2\pi n}\Big[ 2e^{-j\pi n} -1 -e^{-j2\pi n} \Big] \nonumber
 \end{align}
 We can simply calculate that $e^{-j2\pi n}=1$ and $e^{-j\pi n}=(-1)^{n}$. So we can get
 \begin{align}
@@ -227,7 +227,7 @@ C_n &= \ \cfrac{j}{\pi n}\Big[ (-1)^n-1 \Big] \nonumber \\
 \end{align}
 And the Fourier series of square wave will be
 $$
-\mathscr{F}_f(t)= \ \cfrac{4}{\pi} \sum\limits_{k=1}^K{\cfrac{1}{2k-1} \sin [2\pi (2k+1)t]}
+\mathscr{F}_f(t)= \ \cfrac{4}{\pi} \sum\limits_{k=1}^K{\cfrac{1}{2k-1} \sin \left[2\pi (2k+1)t\right]}
 $$
 Using Matlab to verify it.
 \begin{figure}[H]
@@ -703,9 +703,9 @@ $$
 		\node (4) at (3,2) {Multiplication};
 		\node (5) at (3,1) {$\mathscr{F}_{y_zs} = \mathscr{F}_f(\omega)\mathscr{F}_h(\omega) $};
 		\node (6) at (-3,-2) {Differential Equation};
-		\node (7) at (-3,-1) {$\sum\limits_n a_ny^{(n)}(t)$};
+		\node (7) at (-3,-1) {$\sum\limits^n a_ny^{(n)}(t)$};
 		\node (8) at (3,-2) {Power Equation};
-		\node (9) at (3,-1) {$\sum\limits_n a_n(j\omega)^n\mathscr{F}_y(\omega)$};
+		\node (9) at (3,-1) {$\sum\limits^n a_n(j\omega)^n\mathscr{F}_y(\omega)$};
 		\node (p) at (0,3) {};
 		\node[left=of p] {\textbf{Time Domain}};
 		\node[right=of p] {\textbf{Frequency Domain}};
@@ -728,7 +728,7 @@ Also we can get that
 \subsection{\textbf{Distortion Free Transmission and Real-world System}}
 In a communication system, we hope that the signal transmission will not produce distortion. At this time, we will be concerned about how a system changes the excitation, which can be considered "no loss". We can easily restore the magnitude scale of a signal using a gain module. Also, we can simply use delay module to shift its phase. So we can denote the \textbf{Distortion free transmission}: Comparing the excitation $f(t)$ and the corresponding response $y(t)$, the system only \textit{scales the magnitude and shift the phase}. Mathematically, it can be expressed as
 $$
-y(t) = Kf(t-t_D) and \mathscr{F}_y(\omega) = K\mathscr{F}_f(\omega)e^{-j\omega t_D}
+y(t) = Kf(t-t_D) \quad and \quad \mathscr{F}_y(\omega) = K\mathscr{F}_f(\omega)e^{-j\omega t_D}
 $$
 So we can know, for a system transmitting a signal without distortion, the frequency response of this system must be
 $$
@@ -795,7 +795,7 @@ known as \textbf{Paley-Wiener criterion}. Also, it can be described as for a sys
 \subsubsection{\sc 2. Frequency-Domain Watermark}
 Also, Fourier Transform has its 2-D form. We can use it to process something like pictures. We mark the original picture as $f_1$ and the water mark as $f_s$. Apply 2-D Fast Fourier Transform to $f_1$, we can denote
 $$
-\mathscr{F}_{f_1} = FFT2(f_1)
+\mathscr{F}_{f_1} = \mathit{FFT2}(f_1)
 $$
 In order to let our watermark uniformly distributed in frequency domain, we can apply random transform $r$ to sign picture $f_s$
 $$
@@ -807,11 +807,11 @@ $$
 $$
 And do inverse Fast Fourier Transform, we can get
 $$
-f_o = IFFT2(\mathscr{F}_{o})
+f_o = \mathit{IFFT2}(\mathscr{F}_{o})
 $$
 If you want to restore the watermark in this picture, apply 2-D Fast Fourier Transform to $f_o$, 
 $$
-\mathscr{F}_m = FFT2(f_o)
+\mathscr{F}_m = \mathit{FFT2}(f_o)
 $$
 Then subtract the frequency domain of the original image and do the inverse transformation of random transformation $r^{-1}$ to obtain the time domain representation of the watermark
 $$
