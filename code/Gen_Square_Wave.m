@@ -44,7 +44,7 @@ for i=1:1:30
         hp=plot(x,fif_sin);
         pause(0.5);
         str=sprintf("../figure/fig_5/fig-%d.png",m);
-        saveas(hp,str);
+        %saveas(hp,str);
         m=m+1;
     end
 end

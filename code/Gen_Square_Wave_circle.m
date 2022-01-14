@@ -45,7 +45,7 @@ for k=t
     drawnow;
     if mod(s-1,5)==0
         ss=sprintf("../figure/fig_8/fig-%d.png",uint8(s/5));
-        saveas(gcf,ss);
+        %saveas(gcf,ss);
         %s=s+1;
     end
     s=s+1;
